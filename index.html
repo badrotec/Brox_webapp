@@ -1,71 +1,197 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Brox Official</title>
   <style>
+    @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@600&display=swap');
+
     body {
       margin: 0;
-      height: 100vh;
+      font-family: 'Orbitron', sans-serif;
+      color: #fff;
+      background: #000;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background: url('https://i.ibb.co/p4j6zjV/fire-bg.gif') center/cover no-repeat;
+      z-index: -2;
+    }
+
+    body::after {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.75);
+      z-index: -1;
+    }
+
+    header {
+      text-align: center;
+      padding: 100px 20px 60px;
+    }
+
+    header h1 {
+      font-size: 3.5rem;
+      color: #ff4500;
+      text-shadow: 0 0 30px #ff0000, 0 0 60px #ff6600;
+      animation: fireGlow 2s infinite alternate;
+    }
+
+    @keyframes fireGlow {
+      from { text-shadow: 0 0 20px #ff3300, 0 0 40px #ff6600; }
+      to { text-shadow: 0 0 60px #ff0000, 0 0 100px #ff6600; }
+    }
+
+    .slogan {
+      margin-top: 15px;
+      font-size: 1.3rem;
+      color: #ffa500;
+      text-shadow: 0 0 15px #ff6600;
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .buttons {
+      margin-top: 40px;
       display: flex;
       justify-content: center;
-      align-items: center;
-      background: url('https://i.ibb.co/42LQ9V7/volcano1.jpg') no-repeat center center/cover;
-      font-family: Arial, sans-serif;
-      color: #fff;
-      text-align: center;
-      overflow: hidden;
+      gap: 20px;
     }
-    .overlay {
-      position: absolute;
-      top: 0; left: 0; right: 0; bottom: 0;
-      background: rgba(0,0,0,0.5);
-    }
-    .content {
-      position: relative;
-      z-index: 2;
-      max-width: 90%;
-      animation: fadeIn 2s ease-in-out;
-    }
-    h1 {
-      font-size: 2.5em;
-      color: #ff4500;
-      text-shadow: 0 0 15px #ff0000;
-    }
-    p {
-      font-size: 1.2em;
-      margin: 15px 0;
-    }
-    .btn {
-      display: inline-block;
-      padding: 12px 24px;
-      margin-top: 20px;
-      border: none;
-      border-radius: 8px;
-      background: linear-gradient(45deg, #ff4500, #ff0000);
+
+    .buttons a {
+      padding: 12px 25px;
+      font-size: 1rem;
       color: white;
-      font-size: 1em;
+      background: linear-gradient(45deg, #ff3300, #ff6600);
+      border-radius: 30px;
       text-decoration: none;
-      transition: transform 0.2s ease;
-      box-shadow: 0 0 15px #ff4500;
+      box-shadow: 0 0 20px #ff4500;
+      transition: transform 0.3s, box-shadow 0.3s;
     }
-    .btn:hover {
+
+    .buttons a:hover {
       transform: scale(1.1);
+      box-shadow: 0 0 35px #ff6600;
     }
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
+
+    section {
+      padding: 60px 20px;
+      text-align: center;
+    }
+
+    section h2 {
+      font-size: 2rem;
+      margin-bottom: 30px;
+      color: #ff6600;
+      text-shadow: 0 0 15px #ff3300;
+    }
+
+    section p {
+      max-width: 800px;
+      margin: auto;
+      font-size: 1rem;
+      color: #ddd;
+      line-height: 1.6;
+    }
+
+    .roadmap-steps {
+      max-width: 900px;
+      margin: 40px auto 0;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+    }
+
+    .step {
+      padding: 20px;
+      background: rgba(255, 69, 0, 0.15);
+      border: 1px solid #ff6600;
+      border-radius: 15px;
+      box-shadow: 0 0 15px #ff3300;
+      transition: transform 0.3s;
+    }
+
+    .step:hover {
+      transform: translateY(-8px);
+    }
+
+    .step h3 {
+      margin: 0 0 10px;
+      font-size: 1.2rem;
+      color: #ffa500;
+    }
+
+    .step p {
+      font-size: 0.95rem;
+      color: #ccc;
+    }
+
+    footer {
+      text-align: center;
+      padding: 30px 20px;
+      background: rgba(0,0,0,0.9);
+      font-size: 0.9rem;
+      color: #aaa;
+      margin-top: 40px;
+    }
+
+    footer a {
+      color: #ff6600;
+      text-decoration: none;
     }
   </style>
 </head>
 <body>
-  <div class="overlay"></div>
-  <div class="content">
+  <header>
     <h1>🔥 Brox Official 🔥</h1>
-    <p>Born in Fire • Forged in Lava • Destined to Rise 🚀</p>
-    <a class="btn" href="https://t.me/brox_official" target="_blank">Join Telegram</a>
-    <a class="btn" href="https://x.com/brox_official" target="_blank">Follow Twitter</a>
-  </div>
+    <p class="slogan">Born in Fire • Forged in Lava • Rising Strong 🚀</p>
+    <div class="buttons">
+      <a href="https://t.me/brox_official" target="_blank">Telegram</a>
+      <a href="https://x.com/brox_official" target="_blank">Twitter</a>
+    </div>
+  </header>
+
+  <section>
+    <h2>About</h2>
+    <p>
+      Brox Official is a community-driven digital currency, designed to unite strength, creativity, and trust. 
+      Inspired by fire and lava, Brox is not just a token – it’s a movement.
+    </p>
+  </section>
+
+  <section>
+    <h2>🔥 Roadmap</h2>
+    <div class="roadmap-steps">
+      <div class="step">
+        <h3>Phase 1</h3>
+        <p>Community launch and branding.</p>
+      </div>
+      <div class="step">
+        <h3>Phase 2</h3>
+        <p>Partnerships and influencer campaigns.</p>
+      </div>
+      <div class="step">
+        <h3>Phase 3</h3>
+        <p>Utility releases and ecosystem growth.</p>
+      </div>
+      <div class="step">
+        <h3>Phase 4</h3>
+        <p>Global expansion and mainstream adoption.</p>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    © 2025 Brox Official • 
+    <a href="https://t.me/brox_official" target="_blank">Telegram</a> | 
+    <a href="https://x.com/brox_official" target="_blank">Twitter</a>
+  </footer>
 </body>
 </html>
