@@ -5,361 +5,242 @@
 <meta name="viewport" content="width=device-width,initial-scale=1" />
 <title>Brox Official — Born in Fire</title>
 <meta name="description" content="Brox Official — community-driven crypto. Born in fire, forged in lava." />
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-
 <style>
   :root{
-    --bg1:#0b0300; --bg2:#2b0600; --accent:#ff5a1a; --accent2:#ff9a4d; --glass: rgba(255,255,255,0.04);
-    --card: rgba(255,69,0,0.06);
+    --bg1:#070203; --bg2:#2b0600; --accent:#ff6a2b; --accent-2:#ffb38a;
+    --muted: rgba(255,255,255,0.75);
+    --card: rgba(255,90,30,0.06);
   }
   *{box-sizing:border-box}
-  body{
-    margin:0;font-family:Inter,system-ui,Segoe UI,Roboto,"Helvetica Neue",Arial;
-    background: linear-gradient(180deg,var(--bg1),#120200); color:#fff; -webkit-font-smoothing:antialiased;
-    -moz-osx-font-smoothing:grayscale; overflow-x:hidden;
-  }
-
-  /* --- HERO --- */
-  .hero{
-    position:relative; min-height:70vh; display:flex; align-items:center; justify-content:center; text-align:center;
-    padding:48px 20px;
-    overflow:hidden;
-  }
-  /* canvas background (lava/particles) */
-  #lavaCanvas{ position:absolute; inset:0; z-index:0; pointer-events:none; }
-
-  .hero-inner{ position:relative; z-index:2; max-width:1100px; width:100%; }
-  .brand{
-    display:inline-block; padding:8px 16px; border-radius:999px;
-    background:linear-gradient(90deg,var(--accent),var(--accent2));
-    color:#1b0300; font-weight:700; letter-spacing:0.6px; margin-bottom:18px;
-    box-shadow:0 8px 30px rgba(255,90,30,0.1);
-  }
-  h1{ font-size:clamp(28px,5vw,56px); margin:0; line-height:1; color: #fff;
-       text-shadow: 0 6px 30px rgba(255,90,30,0.25); }
-  p.lead{ margin:18px auto 0; max-width:780px; color:rgba(255,255,255,0.88); font-size:clamp(14px,1.6vw,18px); }
-
-  .cta{
-    margin-top:28px; display:flex; gap:14px; justify-content:center; flex-wrap:wrap;
-  }
-  .btn{
-    display:inline-flex; gap:10px; align-items:center; padding:12px 20px; border-radius:999px;
-    text-decoration:none; color:#1b0300; font-weight:700; background:linear-gradient(90deg,var(--accent),var(--accent2));
-    transform:translateZ(0); box-shadow: 0 8px 30px rgba(255,90,30,0.12);
-  }
-  .ghost{
-    background:transparent; color:var(--accent2); border:1px solid rgba(255,154,77,0.12);
-    box-shadow: none; font-weight:600;
-  }
-
-  /* subtle parallax shapes */
-  .parallax-shape{
-    position:absolute; z-index:1; opacity:0.09; filter:blur(18px);
-  }
-
-  /* --- STATS & TOKENOMICS --- */
-  .wrap{ max-width:1100px; margin:38px auto; padding:20px; }
-  .row{ display:flex; gap:18px; flex-wrap:wrap; align-items:stretch; }
-  .card{ background:var(--card); border-radius:14px; padding:18px; flex:1; min-width:220px; box-shadow:0 6px 30px rgba(0,0,0,0.4); }
-  .stat-value{ font-size:clamp(20px,3.6vw,34px); color:var(--accent2); font-weight:700; }
-  .stat-label{ color:rgba(255,255,255,0.78); margin-top:6px; font-size:13px; }
-
-  /* tokenomics */
-  .tokenomics{ display:flex; gap:22px; align-items:center; justify-content:center; flex-wrap:wrap; margin-top:18px; }
-  .pie{ width:180px; height:180px; display:grid; place-items:center; }
-  .legend{ max-width:360px; text-align:left; }
-
-  /* roadmap timeline */
-  .roadmap{ margin-top:28px; }
-  .timeline{ display:flex; gap:16px; flex-wrap:wrap; justify-content:center; }
-  .step{ width:220px; background:linear-gradient(180deg, rgba(255,90,30,0.06), rgba(0,0,0,0.12)); border-radius:12px; padding:16px; box-shadow:0 10px 30px rgba(0,0,0,0.45); transform:translateY(18px); opacity:0; transition:all .6s cubic-bezier(.2,.9,.2,1); }
-  .step.visible{ transform:none; opacity:1; }
-  .step h4{ margin:0 0 8px; color:var(--accent2); }
-  .step p{ margin:0; color:rgba(255,255,255,0.86); font-size:14px; }
-
-  /* FAQ and footer */
-  .faq{ margin-top:36px; text-align:left; max-width:900px; margin-left:auto; margin-right:auto; padding:18px; }
-  .faq-item{ background:rgba(255,255,255,0.02); border-radius:10px; margin-bottom:10px; overflow:hidden; }
-  .faq-q{ padding:12px 16px; cursor:pointer; font-weight:600; color:var(--accent2); }
-  .faq-a{ padding:12px 16px; display:none; color:#ddd; border-top:1px solid rgba(255,255,255,0.03); }
-
-  footer{ padding:28px 18px; text-align:center; color:#aaa; font-size:14px; margin-top:30px; background:linear-gradient(180deg, rgba(0,0,0,0.04), transparent); }
-
-  /* responsiveness */
-  @media (max-width:720px){
-    .row{ flex-direction:column; }
-    .timeline{ flex-direction:column; align-items:center; }
-    .step{ width:90%; }
-    .pie{ width:140px; height:140px; }
-  }
+  body{margin:0;font-family:Inter,system-ui,Arial;background:linear-gradient(180deg,var(--bg1),#110400);color:#fff;line-height:1.45}
+  a{color:inherit;text-decoration:none}
+  .container{max-width:1100px;margin:0 auto;padding:0 18px}
+  /* NAV */
+  header.nav{position:fixed;top:0;left:0;right:0;display:flex;align-items:center;justify-content:center;padding:12px 18px;z-index:50;backdrop-filter: blur(6px);background:linear-gradient(180deg,rgba(0,0,0,0.35),rgba(0,0,0,0.15))}
+  .nav-inner{max-width:1200px;width:100%;display:flex;align-items:center;justify-content:space-between}
+  .logo{font-weight:700;color:var(--accent);letter-spacing:0.6px}
+  .nav-links{display:flex;gap:14px;align-items:center}
+  .nav-links a{padding:8px 12px;border-radius:8px;color:var(--muted);font-weight:600}
+  .nav-links a.cta{background:linear-gradient(90deg,var(--accent),var(--accent-2));color:#1b0300;box-shadow:0 8px 30px rgba(255,90,30,0.08)}
+  /* HERO */
+  .hero{min-height:72vh;display:flex;align-items:center;justify-content:center;padding:110px 0 60px;position:relative;overflow:hidden}
+  #lavaCanvas{position:absolute;inset:0;z-index:0;pointer-events:none}
+  .hero-card{position:relative;z-index:2;text-align:center;max-width:960px;padding:20px}
+  .badge{display:inline-block;padding:6px 12px;border-radius:999px;background:linear-gradient(90deg,var(--accent),var(--accent-2));color:#120200;font-weight:700;margin-bottom:18px}
+  h1{font-size:clamp(28px,5vw,56px);margin:0;color:#fff;text-shadow:0 10px 40px rgba(255,90,30,0.12)}
+  p.lead{color:rgba(255,255,255,0.9);margin-top:12px;font-size:1.05rem}
+  .hero-ctas{margin-top:20px;display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+  .btn{padding:12px 20px;border-radius:999px;font-weight:700;background:linear-gradient(90deg,var(--accent),var(--accent-2));color:#170200;box-shadow:0 12px 30px rgba(255,90,30,0.08)}
+  .btn.ghost{background:transparent;border:1px solid rgba(255,255,255,0.06);color:var(--muted)}
+  /* partners */
+  .partners{display:flex;gap:18px;align-items:center;justify-content:center;flex-wrap:wrap;margin-top:20px;opacity:0.95}
+  .partner{padding:6px 12px;border-radius:8px;background:rgba(255,255,255,0.03);font-size:0.85rem;color:rgba(255,255,255,0.9)}
+  /* main sections */
+  section{padding:56px 0}
+  .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px}
+  .card{background:var(--card);padding:18px;border-radius:12px;box-shadow:0 8px 30px rgba(0,0,0,0.5)}
+  .card h3{margin:0 0 8px;color:var(--accent-2)}
+  /* roadmap */
+  .timeline{display:flex;gap:16px;flex-wrap:wrap;justify-content:center;margin-top:18px}
+  .step{min-width:220px;padding:16px;border-radius:12px;background:linear-gradient(180deg,rgba(255,90,30,0.04),rgba(0,0,0,0.08));opacity:0;transform:translateY(20px);transition:all .6s cubic-bezier(.2,.9,.2,1)}
+  .step.visible{opacity:1;transform:none}
+  /* tokenomics (pie) */
+  .token-row{display:flex;gap:22px;flex-wrap:wrap;align-items:center;justify-content:center}
+  .pie-wrap{width:200px;height:200px}
+  .legend{max-width:360px;text-align:left}
+  .legend-item{display:flex;gap:8px;align-items:center;margin:8px 0}
+  .color-dot{width:14px;height:14px;border-radius:3px;display:inline-block}
+  /* footer */
+  footer{padding:28px 16px;text-align:center;color:#aaa;background:linear-gradient(180deg,rgba(0,0,0,0.03),transparent)}
+  @media (max-width:760px){.nav-links{display:none}.hero{padding:140px 0 40px}}
 </style>
 </head>
 <body>
 
-<!-- HERO -->
-<section class="hero" id="hero">
-  <canvas id="lavaCanvas"></canvas>
-
-  <div class="hero-inner" data-parallax>
-    <div class="brand">Brox Official</div>
-    <h1>Born in Fire — Forged in Lava</h1>
-    <p class="lead">Brox is a community-driven digital currency built for bold memers and builders. Trust, creativity, and a fiery roadmap — join the movement.</p>
-
-    <div class="cta">
-      <a class="btn" href="https://t.me/brox_official" target="_blank" rel="noopener noreferrer">🔗 Join Telegram</a>
-      <a class="btn ghost" href="https://x.com/brox_official" target="_blank" rel="noopener noreferrer">🐦 Follow X</a>
-    </div>
+<header class="nav">
+  <div class="nav-inner container">
+    <div class="logo">Brox<span style="color:var(--accent-2)">Official</span></div>
+    <nav class="nav-links">
+      <a href="#about">About</a>
+      <a href="#roadmap">Roadmap</a>
+      <a href="#builders">Builders</a>
+      <a class="cta" href="#community">Community</a>
+    </nav>
   </div>
+</header>
 
-  <!-- parallax decorative shapes -->
-  <svg class="parallax-shape" style="width:480px;left:-6%;top:10%;" viewBox="0 0 600 600" aria-hidden>
-    <defs><linearGradient id="g1" x1="0" x2="1"><stop stop-color="#ff7a3b" offset="0"/><stop stop-color="#ff3a00" offset="1"/></linearGradient></defs>
-    <circle cx="300" cy="300" r="200" fill="url(#g1)" opacity="0.18"></circle>
-  </svg>
-  <svg class="parallax-shape" style="width:320px;right:-6%;bottom:6%;" viewBox="0 0 600 600" aria-hidden>
-    <circle cx="300" cy="300" r="180" fill="#ff6b3b" opacity="0.12"></circle>
-  </svg>
-</section>
+<main>
+  <!-- HERO -->
+  <section class="hero" id="hero">
+    <canvas id="lavaCanvas"></canvas>
+    <div class="hero-card container">
+      <div class="badge">BROX • OFFICIAL</div>
+      <h1>Born in Fire — Forged in Lava</h1>
+      <p class="lead">A community-driven digital currency built for creators, memers and builders. Fast, fiery, and focused on real utility.</p>
+      <div class="hero-ctas">
+        <a class="btn" href="https://t.me/brox_official" target="_blank" rel="noopener">Join Telegram</a>
+        <a class="btn ghost" href="https://x.com/brox_official" target="_blank" rel="noopener">Follow X</a>
+      </div>
 
-<!-- STATS + TOKENOMICS -->
-<div class="wrap">
-  <div class="row">
-    <div class="card">
-      <div style="display:flex;justify-content:space-between;align-items:center;">
-        <div>
-          <div style="font-size:13px;color:rgba(255,255,255,0.7)">HOLDERS</div>
-          <div class="stat-value" id="holders">0</div>
+      <div class="partners" aria-hidden>
+        <div class="partner">Used by: DemoX</div>
+        <div class="partner">Partner: MemeLab</div>
+        <div class="partner">Tracker: DemoScan</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about" class="container">
+    <div style="max-width:900px;margin:0 auto;text-align:center">
+      <h2 style="color:var(--accent-2)">About Brox</h2>
+      <p style="color:rgba(255,255,255,0.9)">Brox Official unites a fiery community with practical utilities: airdrops, mini-games, NFTs, and governance — rolled into a token designed for fun and real use.</p>
+    </div>
+  </section>
+
+  <!-- STATS + TOKENOMICS -->
+  <section class="container">
+    <div class="row cards">
+      <div class="card">
+        <h3>Live Stats</h3>
+        <div style="display:flex;gap:12px;align-items:center;justify-content:space-between">
+          <div>
+            <div style="font-size:20px;color:var(--accent-2);font-weight:700" id="holders">0</div>
+            <div style="font-size:13px;color:var(--muted)">Holders</div>
+          </div>
+          <div>
+            <div style="font-size:20px;color:var(--accent-2);font-weight:700" id="cap">$0</div>
+            <div style="font-size:13px;color:var(--muted)">Market Cap</div>
+          </div>
+          <div>
+            <div style="font-size:20px;color:var(--accent-2);font-weight:700" id="vol">$0</div>
+            <div style="font-size:13px;color:var(--muted)">24h Volume</div>
+          </div>
         </div>
-        <div style="text-align:right">
-          <div style="font-size:13px;color:rgba(255,255,255,0.7)">MARKET CAP</div>
-          <div class="stat-value" id="cap">$0</div>
+
+        <div style="margin-top:14px">
+          <div style="font-size:13px;color:var(--muted)">Tokenomics</div>
+          <div class="token-row" style="margin-top:8px">
+            <div class="pie-wrap" id="pieWrap" aria-hidden>
+              <svg viewBox="0 0 32 32" width="180" height="180"><circle r="10" cx="16" cy="16" fill="transparent" stroke="#222" stroke-width="8"></circle></svg>
+            </div>
+            <div class="legend">
+              <div class="legend-item"><span class="color-dot" style="background:#ff7a3b"></span> Team & Dev — 15%</div>
+              <div class="legend-item"><span class="color-dot" style="background:#ff3a00"></span> Liquidity — 40%</div>
+              <div class="legend-item"><span class="color-dot" style="background:#ffa363"></span> Marketing — 25%</div>
+              <div class="legend-item"><span class="color-dot" style="background:#ffc89a"></span> Airdrop — 20%</div>
+            </div>
+          </div>
         </div>
       </div>
 
-      <div style="margin-top:12px;border-top:1px solid rgba(255,255,255,0.03);padding-top:12px;">
-        <div style="font-size:13px;color:rgba(255,255,255,0.7);">TOKENOMICS</div>
-        <div class="tokenomics">
-          <!-- svg pie -->
-          <div class="pie" id="pieWrap">
-            <svg viewBox="0 0 32 32" width="160" height="160">
-              <circle r="10" cx="16" cy="16" fill="transparent" stroke="#222" stroke-width="8"></circle>
-              <!-- slices inserted by JS -->
-            </svg>
-          </div>
-          <div class="legend">
-            <div style="display:flex;gap:8px;align-items:center;margin-bottom:8px;"><span style="width:14px;height:14px;display:inline-block;background:#ff7a3b;border-radius:3px"></span> Team & Dev — 15%</div>
-            <div style="display:flex;gap:8px;align-items:center;margin-bottom:8px;"><span style="width:14px;height:14px;display:inline-block;background:#ff3a00;border-radius:3px"></span> Liquidity — 40%</div>
-            <div style="display:flex;gap:8px;align-items:center;margin-bottom:8px;"><span style="width:14px;height:14px;display:inline-block;background:#ffa363;border-radius:3px"></span> Marketing — 25%</div>
-            <div style="display:flex;gap:8px;align-items:center;"><span style="width:14px;height:14px;display:inline-block;background:#ffc89a;border-radius:3px"></span> Airdrop & Community — 20%</div>
-          </div>
+      <div class="card">
+        <h3 id="builders">Builders & Dev Tools</h3>
+        <p style="color:var(--muted)">Docs, SDKs, Wallet adapters and example integrations to help builders ship quickly.</p>
+        <div style="display:flex;gap:8px;margin-top:12px;flex-wrap:wrap">
+          <a class="btn ghost" href="#">Docs</a>
+          <a class="btn ghost" href="#">SDK</a>
+          <a class="btn ghost" href="#">Wallet Adapter</a>
         </div>
       </div>
     </div>
-
-    <div class="card">
-      <div style="font-size:13px;color:rgba(255,255,255,0.7)">24H VOLUME</div>
-      <div style="display:flex;align-items:center;gap:14px;margin-top:6px;">
-        <div style="flex:1">
-          <div class="stat-value" id="volume">$0</div>
-          <div style="color:rgba(255,255,255,0.78);margin-top:6px;font-size:13px;">Live-like demo stats (update by API later)</div>
-        </div>
-        <div style="width:86px;text-align:center">
-          <div style="font-size:12px;color:rgba(255,255,255,0.7)">Trust</div>
-          <div style="font-weight:700;color:var(--accent2);font-size:18px">High</div>
-        </div>
-      </div>
-    </div>
-  </div>
+  </section>
 
   <!-- ROADMAP -->
-  <div class="roadmap">
-    <h3 style="text-align:center;margin-top:28px;color:var(--accent2);font-size:20px">ROADMAP</h3>
-    <div class="timeline">
-      <div class="step"><h4>Phase 1</h4><p>Community launch • Social proof • Initial token distribution</p></div>
-      <div class="step"><h4>Phase 2</h4><p>Marketing wave • Partnerships • Airdrops & events</p></div>
-      <div class="step"><h4>Phase 3</h4><p>Utility releases • Mini-games & NFTs</p></div>
-      <div class="step"><h4>Phase 4</h4><p>Exchange listings & ecosystem growth</p></div>
+  <section id="roadmap" class="container">
+    <h2 style="text-align:center;color:var(--accent-2)">Roadmap</h2>
+    <div class="timeline" id="timeline">
+      <div class="step"><h4>Phase 1</h4><p>Community launch, whitepaper, basic tokenomics</p></div>
+      <div class="step"><h4>Phase 2</h4><p>Marketing push, airdrops, partners</p></div>
+      <div class="step"><h4>Phase 3</h4><p>Mini games, NFT collections, utility beta</p></div>
+      <div class="step"><h4>Phase 4</h4><p>Listings, ecosystem expansion, governance</p></div>
     </div>
-  </div>
+  </section>
 
   <!-- FAQ -->
-  <div class="faq" aria-labelledby="faqTitle">
-    <h3 style="color:var(--accent2);margin-bottom:10px">FAQ</h3>
-    <div class="faq-item">
-      <div class="faq-q">What is Brox Official?</div>
-      <div class="faq-a">Brox Official is a community-driven token focused on culture, creativity and utility. It's built to reward early supporters and foster community growth.</div>
+  <section class="container">
+    <h2 style="text-align:center;color:var(--accent-2)">FAQ</h2>
+    <div style="max-width:900px;margin:16px auto">
+      <div style="margin-bottom:8px;background:rgba(255,255,255,0.02);padding:12px;border-radius:8px">
+        <strong>What is Brox?</strong>
+        <div style="color:var(--muted);margin-top:8px">A community token with utility and collectibles.</div>
+      </div>
+      <div style="margin-bottom:8px;background:rgba(255,255,255,0.02);padding:12px;border-radius:8px">
+        <strong>How to join?</strong>
+        <div style="color:var(--muted);margin-top:8px">Join our Telegram and follow announcements.</div>
+      </div>
     </div>
-    <div class="faq-item">
-      <div class="faq-q">How can I join?</div>
-      <div class="faq-a">Click the Telegram link above or search @brox_official on Telegram. Follow X for announcements.</div>
-    </div>
-  </div>
-</div>
+  </section>
+</main>
 
 <footer>
-  © <span id="yr"></span> Brox Official • <a href="https://t.me/brox_official" target="_blank" style="color:var(--accent2)">Telegram</a> • <a href="https://x.com/brox_official" target="_blank" style="color:var(--accent2)">X</a>
+  <div class="container">© <span id="yr"></span> Brox Official • <a href="https://t.me/brox_official" target="_blank">Telegram</a> • <a href="https://x.com/brox_official" target="_blank">X</a></div>
 </footer>
 
-<!-- LIGHTWEIGHT SCRIPTS -->
 <script>
-/* ---------- Lava particle background (light) ---------- */
-/* small, optimized canvas particle effect emulating embers/lava */
+/* lightweight lava particle background */
 (function(){
-  const canvas = document.getElementById('lavaCanvas');
-  if(!canvas) return;
-  const ctx = canvas.getContext('2d');
-  let w, h, particles=[];
-  function resize(){
-    w = canvas.width = innerWidth;
-    h = canvas.height = innerHeight;
-  }
-  window.addEventListener('resize', resize);
-  resize();
-  function rand(min,max){return Math.random()*(max-min)+min;}
-  function createParticles(n){
-    for(let i=0;i<n;i++){
-      particles.push({
-        x: rand(0,w), y: rand(h*0.2,h), vx: rand(-0.3,0.3), vy: rand(-1.2,-0.2),
-        r: rand(1,3), life: rand(60,160), hue: rand(10,40)
-      });
-    }
-  }
-  createParticles(Math.floor((w*h)/90000)); // scale with screen size
+  const c = document.getElementById('lavaCanvas');
+  if(!c) return;
+  const ctx = c.getContext('2d'); let w,h, parts=[];
+  function resize(){ w=c.width=innerWidth; h=c.height=innerHeight; }
+  window.addEventListener('resize', resize); resize();
+  function r(min,max){return Math.random()*(max-min)+min}
+  function spawn(n){ for(let i=0;i<n;i++){ parts.push({x:r(0,w), y:r(h*0.8,h+40), vx:r(-0.4,0.4), vy:r(-1.6,-0.6), r:r(0.9,3.2), life: r(80,220), hue: r(10,40)}) } }
+  spawn(Math.floor((w*h)/100000));
   function draw(){
     ctx.clearRect(0,0,w,h);
-    // subtle glow gradient
-    const g = ctx.createLinearGradient(0,0,0,h);
-    g.addColorStop(0,'rgba(255,80,40,0.02)');
-    g.addColorStop(1,'rgba(0,0,0,0.6)');
-    ctx.fillStyle = g;
-    ctx.fillRect(0,0,w,h);
-
-    for(let i=particles.length-1;i>=0;i--){
-      const p = particles[i];
-      p.x += p.vx;
-      p.y += p.vy;
-      p.life--;
-      // draw ember
+    for(let i=parts.length-1;i>=0;i--){
+      const p=parts[i]; p.x+=p.vx; p.y+=p.vy; p.life--;
+      const a=Math.max(0,Math.min(1,p.life/220));
       ctx.beginPath();
-      const alpha = Math.max(0, Math.min(1, p.life/160));
-      ctx.fillStyle = 'hsla('+p.hue+',90%,'+ (50 + (p.r*2)) +'%,'+ (0.12*alpha) +')';
-      ctx.shadowBlur = 12 * (alpha);
-      ctx.shadowColor = 'rgba(255,120,30,'+ (0.2*alpha) +')';
-      ctx.arc(p.x, p.y, p.r* (1+ (1-alpha)*0.6), 0, Math.PI*2);
-      ctx.fill();
-      if(p.life<=0 || p.y < -10 || p.x < -50 || p.x > w+50){
-        // respawn at bottom
-        particles.splice(i,1);
-        particles.push({
-          x: rand(0,w), y: rand(h*0.9,h+40), vx: rand(-0.4,0.4), vy: rand(-1.4,-0.4),
-          r: rand(1,3), life: rand(60,180), hue: rand(10,40)
-        });
-      }
+      ctx.fillStyle='hsla('+p.hue+',90%,'+(50+(p.r*3))+'%,'+(0.12*a)+')';
+      ctx.shadowBlur=12*a; ctx.shadowColor='rgba(255,120,30,'+(0.2*a)+')';
+      ctx.arc(p.x,p.y,p.r*(1+(1-a)*0.6),0,Math.PI*2); ctx.fill();
+      if(p.life<=0||p.y<-20||p.x<-50||p.x>w+50){ parts.splice(i,1); parts.push({x:r(0,w), y:r(h*0.9,h+40), vx:r(-0.5,0.5), vy:r(-1.8,-0.6), r:r(0.9,3.2), life:r(80,220), hue:r(10,40)}) }
     }
     requestAnimationFrame(draw);
   }
   draw();
 })();
 
-/* ---------- Parallax subtle movement for shapes ---------- */
+/* counters */
 (function(){
-  const root = document.documentElement;
-  window.addEventListener('mousemove', (e)=>{
-    const cx = innerWidth/2, cy = innerHeight/2;
-    const dx = (e.clientX - cx)/cx;
-    const dy = (e.clientY - cy)/cy;
-    document.querySelectorAll('[data-parallax]').forEach(el=>{
-      el.style.transform = `translate3d(${dx*6}px, ${dy*6}px, 0)`;
-    });
-    document.querySelectorAll('.parallax-shape').forEach((s,i)=>{
-      const idx = i%2 ? -1 : 1;
-      s.style.transform = `translate3d(${dx*12*idx}px, ${dy*8*idx}px, 0)`;
-    });
-  });
-})();
-
-/* ---------- Counters animation ---------- */
-(function(){
-  function animate(id, end, duration, prefix='') {
-    const el = document.getElementById(id);
-    if(!el) return;
-    let start = 0, startTime=null;
-    function step(ts){
-      if(!startTime) startTime=ts;
-      const prog = Math.min((ts-startTime)/duration,1);
-      const val = Math.floor(start + (end-start)*prog);
-      el.textContent = (id === 'cap' || id === 'volume') ? ('$' + val.toLocaleString()) : val.toLocaleString();
-      if(prog<1) requestAnimationFrame(step);
-    }
+  function anim(id, to, ms, prefix='') {
+    const el=document.getElementById(id); if(!el) return;
+    let start=null;
+    const step=(t)=>{ if(!start) start=t; const p=Math.min((t-start)/ms,1); const val=Math.floor(p*to); el.textContent=(id==='cap'||id==='vol')?('$'+val.toLocaleString()):val.toLocaleString(); if(p<1) requestAnimationFrame(step); };
     requestAnimationFrame(step);
   }
-  // initial demo values (replace or fetch from API later)
-  animate('holders', 12345, 1600);
-  animate('cap', 4200000, 1800);
-  animate('volume', 320000, 1800);
+  anim('holders', 12345, 1400);
+  anim('cap', 4200000, 1600);
+  anim('vol', 320000, 1600);
 })();
 
-/* ---------- Draw tokenomics pie with SVG stroke-dasharray ---------- */
+/* pie drawing */
 (function(){
-  const slices = [
-    {color:'#ff7a3b', value:15},
-    {color:'#ff3a00', value:40},
-    {color:'#ffa363', value:25},
-    {color:'#ffc89a', value:20}
-  ];
-  const svg = document.querySelector('#pieWrap svg');
-  const circumference = 2 * Math.PI * 10; // circle r=10
-  let offset = 0;
-  slices.forEach((s, idx)=>{
-    const portion = (s.value/100) * circumference;
-    const circle = document.createElementNS('http://www.w3.org/2000/svg','circle');
-    circle.setAttribute('r','10');
-    circle.setAttribute('cx','16');
-    circle.setAttribute('cy','16');
-    circle.setAttribute('fill','transparent');
-    circle.setAttribute('stroke', s.color);
-    circle.setAttribute('stroke-width','8');
-    circle.setAttribute('stroke-dasharray', `${portion} ${circumference - portion}`);
-    circle.setAttribute('transform', 'rotate(-90 16 16)');
-    circle.setAttribute('stroke-dashoffset', `${-offset}`);
-    svg.appendChild(circle);
-    offset += portion;
+  const slices=[{v:15,c:'#ff7a3b'},{v:40,c:'#ff3a00'},{v:25,c:'#ffa363'},{v:20,c:'#ffc89a'}];
+  const svg=document.querySelector('#pieWrap svg'); if(!svg) return;
+  const circ=2*Math.PI*10; let off=0;
+  slices.forEach(s=>{
+    const portion=(s.v/100)*circ;
+    const circle=document.createElementNS('http://www.w3.org/2000/svg','circle');
+    circle.setAttribute('r','10'); circle.setAttribute('cx','16'); circle.setAttribute('cy','16'); circle.setAttribute('fill','transparent');
+    circle.setAttribute('stroke',s.c); circle.setAttribute('stroke-width','8'); circle.setAttribute('stroke-dasharray',portion+' '+(circ-portion));
+    circle.setAttribute('transform','rotate(-90 16 16)'); circle.setAttribute('stroke-dashoffset',-off);
+    svg.appendChild(circle); off+=portion;
   });
 })();
 
-/* ---------- Roadmap reveal on scroll ---------- */
+/* reveal on scroll for roadmap */
 (function(){
-  const steps = document.querySelectorAll('.step');
-  const obs = new IntersectionObserver((ents)=>{
-    ents.forEach(e=>{
-      if(e.isIntersecting) e.target.classList.add('visible');
-    });
-  }, {threshold:0.2});
+  const steps=document.querySelectorAll('.step'); const obs=new IntersectionObserver((ents)=>{ ents.forEach(e=>{ if(e.isIntersecting) e.target.classList.add('visible'); }); },{threshold:0.2});
   steps.forEach(s=>obs.observe(s));
 })();
 
-/* ---------- FAQ toggle ---------- */
-(function(){
-  document.querySelectorAll('.faq-q').forEach(q=>{
-    q.addEventListener('click', ()=>{
-      const a = q.nextElementSibling;
-      const open = a.style.display === 'block';
-      document.querySelectorAll('.faq-a').forEach(x=>x.style.display='none');
-      a.style.display = open ? 'none' : 'block';
-    });
-  });
-})();
-
-/* ---------- footer year ---------- */
-document.getElementById('yr').textContent = new Date().getFullYear();
-
-/* ---------- Accessibility: reduce motion respect ---------- */
-if(window.matchMedia('(prefers-reduced-motion: reduce)').matches){
-  document.documentElement.style.scrollBehavior = 'auto';
-  // Stop animations if needed (not fully implemented here)
-}
+/* footer year */
+document.getElementById('yr').textContent=new Date().getFullYear();
 </script>
-
 </body>
 </html>
