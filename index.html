@@ -4,56 +4,61 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Brox Official - Crypto Project</title>
+  <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
   <style>
     body {
       margin: 0;
       font-family: "Poppins", sans-serif;
-      background: linear-gradient(180deg, #1a0000, #330000, #000);
+      background: linear-gradient(-45deg, #1a0000, #330000, #000);
+      background-size: 400% 400%;
+      animation: bgMove 15s ease infinite;
       color: #fff;
       text-align: center;
     }
+    @keyframes bgMove {
+      0% {background-position: 0% 50%;}
+      50% {background-position: 100% 50%;}
+      100% {background-position: 0% 50%;}
+    }
     header {
-      padding: 60px 20px;
-      background: url('https://images.unsplash.com/photo-1582719471137-c3967fb8a5e0?ixlib=rb-4.0.3&auto=format&fit=crop&w=1500&q=80') center/cover no-repeat;
+      padding: 80px 20px;
       position: relative;
-    }
-    header::after {
-      content: "";
-      position: absolute;
-      top: 0; left: 0; right: 0; bottom: 0;
-      background: rgba(0,0,0,0.6);
-    }
-    header h1, header p {
-      position: relative;
-      z-index: 2;
     }
     header h1 {
       font-size: 3rem;
-      text-shadow: 0 0 20px #ff4500;
+      text-shadow: 0 0 25px #ff4500;
+      margin-bottom: 10px;
     }
     header p {
       font-size: 1.2rem;
+      margin-bottom: 20px;
     }
     .btn {
-      display: inline-block;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
       margin: 10px;
       padding: 12px 24px;
       background: #ff4500;
       color: #fff;
+      font-weight: bold;
       text-decoration: none;
       border-radius: 30px;
+      box-shadow: 0 0 15px rgba(255, 69, 0, 0.6);
       transition: 0.3s;
-      position: relative;
-      z-index: 2;
     }
     .btn:hover {
       background: #ff6347;
-      transform: scale(1.05);
+      transform: scale(1.08);
     }
     section {
-      padding: 50px 20px;
+      padding: 60px 20px;
       max-width: 900px;
       margin: auto;
+    }
+    h2 {
+      margin-bottom: 20px;
+      text-shadow: 0 0 15px #ff4500;
     }
     .stats {
       display: flex;
@@ -68,11 +73,32 @@
       padding: 20px;
       border-radius: 12px;
       box-shadow: 0 0 15px rgba(255,69,0,0.4);
+      transition: transform 0.3s;
+    }
+    .stat:hover {
+      transform: translateY(-5px);
     }
     .stat h3 {
       font-size: 2rem;
       margin: 0;
       color: #ff4500;
+    }
+    ul.roadmap {
+      list-style: none;
+      padding: 0;
+    }
+    ul.roadmap li {
+      margin: 15px 0;
+      padding: 15px;
+      background: rgba(255, 69, 0, 0.1);
+      border-radius: 8px;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: all 0.6s ease;
+    }
+    ul.roadmap li.visible {
+      opacity: 1;
+      transform: translateY(0);
     }
     footer {
       padding: 20px;
@@ -86,8 +112,8 @@
   <header>
     <h1>🔥 Brox Official 🔥</h1>
     <p>The meme coin rising from the lava 🌋</p>
-    <a href="https://t.me/brox_official" class="btn">Join Telegram</a>
-    <a href="https://x.com/brox_official" class="btn">Follow on X</a>
+    <a href="https://t.me/brox_official" class="btn"><i class='bx bxl-telegram'></i> Telegram</a>
+    <a href="https://x.com/brox_official" class="btn"><i class='bx bxl-twitter'></i> Twitter / X</a>
   </header>
 
   <section>
@@ -100,7 +126,7 @@
 
   <section>
     <h2>Roadmap</h2>
-    <ul style="list-style:none;padding:0;">
+    <ul class="roadmap">
       <li>✅ Phase 1: Launch & Community Building</li>
       <li>🚀 Phase 2: Listings & Marketing Push</li>
       <li>🌐 Phase 3: Partnerships & Ecosystem Growth</li>
@@ -112,15 +138,15 @@
     <h2>Live Stats</h2>
     <div class="stats">
       <div class="stat">
-        <h3>12K+</h3>
+        <h3 id="holders">0</h3>
         <p>Holders</p>
       </div>
       <div class="stat">
-        <h3>$3.5M</h3>
+        <h3 id="cap">0</h3>
         <p>Market Cap</p>
       </div>
       <div class="stat">
-        <h3>$450K</h3>
+        <h3 id="volume">0</h3>
         <p>Daily Volume</p>
       </div>
     </div>
@@ -129,12 +155,46 @@
   <section>
     <h2>Join the Community</h2>
     <p>Be part of the fiery movement and shape the future of Brox Official.</p>
-    <a href="https://t.me/brox_official" class="btn">Telegram</a>
-    <a href="https://x.com/brox_official" class="btn">Twitter / X</a>
+    <a href="https://t.me/brox_official" class="btn"><i class='bx bxl-telegram'></i> Telegram</a>
+    <a href="https://x.com/brox_official" class="btn"><i class='bx bxl-twitter'></i> Twitter / X</a>
   </section>
 
   <footer>
-    © 2025 Brox Official. All Rights Reserved.
+    © <span id="year"></span> Brox Official. All Rights Reserved.
   </footer>
+
+  <script>
+    // عداد الأرقام
+    function animateValue(id, start, end, duration) {
+      const obj = document.getElementById(id);
+      let startTimestamp = null;
+      const step = (timestamp) => {
+        if (!startTimestamp) startTimestamp = timestamp;
+        const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+        obj.innerText = Math.floor(progress * (end - start) + start).toLocaleString();
+        if (progress < 1) {
+          window.requestAnimationFrame(step);
+        }
+      };
+      window.requestAnimationFrame(step);
+    }
+    animateValue("holders", 0, 12000, 2000);
+    animateValue("cap", 0, 3500000, 2500);
+    animateValue("volume", 0, 450000, 2000);
+
+    // Roadmap Animation عند التمرير
+    const items = document.querySelectorAll(".roadmap li");
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("visible");
+        }
+      });
+    }, {threshold: 0.2});
+    items.forEach(item => observer.observe(item));
+
+    // تحديث السنة تلقائيًا
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>
