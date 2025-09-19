@@ -1,270 +1,346 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>Brox Official — Born in Fire</title>
-<meta name="description" content="Brox Official — community-driven crypto. Born in fire, forged in lava." />
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-<style>
-  :root{
-    --bg1:#080203; --bg2:#2a0600; --accent:#ff6a2b; --accent2:#ffb38a; --muted:rgba(255,255,255,0.82);
-    --card: rgba(255,90,30,0.06);
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Brox Official — Born in Fire</title>
+  <meta name="description" content="Brox Official — community-driven token. Airdrops, NFTs, mini-games and a clear roadmap. Join our Telegram for updates." />
+  <!-- Open Graph -->
+  <meta property="og:title" content="Brox Official — Born in Fire" />
+  <meta property="og:description" content="Community token with utility & collectibles. Join our Telegram for airdrops & updates." />
+  <meta property="og:image" content="https://yourdomain.com/og-image.png" /> <!-- استبدل بصورة OG -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://yourdomain.github.io/brox-official/" />
+
+  <!-- Twitter card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:site" content="@brox_official" />
+
+  <!-- favicon (ضع ملف favicon.ico في المستودع أو رابط) -->
+  <link rel="icon" href="favicon.ico" />
+
+  <!-- Google font (Inter) -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <!-- Structured data (JSON-LD) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "Brox Official",
+    "url": "https://yourdomain.github.io/brox-official/",
+    "description": "Brox Official — community-driven token. Airdrops, NFTs, mini-games and a clear roadmap."
   }
-  *{box-sizing:border-box}
-  body{ margin:0; font-family:Inter,system-ui,Segoe UI,Roboto,Arial; color:#fff; background:linear-gradient(180deg,var(--bg1),#120200); -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale; }
-  a{ color:inherit; text-decoration:none; }
-  .container{ max-width:1100px; margin:0 auto; padding:0 18px; }
+  </script>
 
-  /* NAV */
-  .nav{ position:fixed; left:0; right:0; top:0; display:flex; justify-content:center; padding:10px 18px; z-index:60; background:linear-gradient(180deg, rgba(0,0,0,0.28), rgba(0,0,0,0.12)); backdrop-filter: blur(6px);}
-  .nav-inner{ width:100%; max-width:1200px; display:flex; align-items:center; justify-content:space-between; gap:12px; }
-  .logo{ font-weight:700; color:var(--accent); letter-spacing:0.6px; font-size:18px; }
-  .nav-links{ display:flex; gap:12px; align-items:center; }
-  .nav-links a{ padding:8px 12px; border-radius:8px; color:var(--muted); font-weight:600; font-size:14px; }
-  .nav-links a.cta{ background:linear-gradient(90deg,var(--accent),var(--accent2)); color:#120200; box-shadow:0 10px 30px rgba(255,90,30,0.06); }
+  <style>
+    :root{
+      --bg1:#070203; --bg2:#2b0600; --accent:#ff6a2b; --accent2:#ffb38a; --muted:rgba(255,255,255,0.85);
+      --card: rgba(255,90,30,0.05);
+      --glass: rgba(255,255,255,0.03);
+      --radius:14px;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%;margin:0;font-family:Inter,system-ui,Arial;background:linear-gradient(180deg,var(--bg1),#110400);color:#fff;-webkit-font-smoothing:antialiased}
+    a{color:inherit}
+    .container{max-width:1100px;margin:0 auto;padding:0 18px}
 
-  /* HERO */
-  .hero{ min-height:72vh; display:flex; align-items:center; justify-content:center; position:relative; overflow:hidden; padding:110px 0 60px; }
-  #lavaCanvas{ position:absolute; inset:0; z-index:0; pointer-events:none; }
-  .hero-card{ position:relative; z-index:2; text-align:center; max-width:960px; padding:22px; }
-  .badge{ display:inline-block; padding:6px 12px; border-radius:999px; background:linear-gradient(90deg,var(--accent),var(--accent2)); color:#160400; font-weight:700; margin-bottom:14px; }
-  h1{ font-size:clamp(28px,5vw,56px); margin:0; color:#fff; text-shadow:0 10px 40px rgba(255,90,30,0.12); }
-  p.lead{ margin-top:12px; color:rgba(255,255,255,0.92); font-size:1.05rem; max-width:820px; margin-left:auto; margin-right:auto;}
-  .hero-ctas{ margin-top:20px; display:flex; gap:12px; justify-content:center; flex-wrap:wrap;}
-  .btn{ padding:12px 20px; border-radius:999px; font-weight:700; background:linear-gradient(90deg,var(--accent),var(--accent2)); color:#170200; box-shadow:0 12px 30px rgba(255,90,30,0.08); display:inline-flex; gap:10px; align-items:center; }
-  .btn.ghost{ background:transparent; border:1px solid rgba(255,255,255,0.06); color:var(--muted); }
+    /* NAV */
+    .nav{position:fixed;left:0;right:0;top:0;z-index:80;background:linear-gradient(180deg, rgba(0,0,0,0.35), rgba(0,0,0,0.08));backdrop-filter: blur(5px)}
+    .nav-inner{display:flex;align-items:center;justify-content:space-between;max-width:1200px;margin:0 auto;padding:10px 18px}
+    .logo{font-weight:700;color:var(--accent)}
+    .nav-links{display:flex;gap:10px;align-items:center}
+    .nav-links a{padding:8px 12px;border-radius:10px;color:var(--muted);font-weight:600;font-size:14px}
+    .nav-links a.btn-cta{background:linear-gradient(90deg,var(--accent),var(--accent2));color:#170200;box-shadow:0 10px 30px rgba(255,90,30,0.08)}
 
-  /* partners */
-  .partners{ display:flex; gap:12px; align-items:center; justify-content:center; flex-wrap:wrap; margin-top:18px; opacity:0.95; font-size:13px; color:rgba(255,255,255,0.9); }
+    /* mobile menu */
+    .hamb{display:none;cursor:pointer;padding:8px;border-radius:8px;background:transparent}
+    @media(max-width:780px){.nav-links{display:none}.hamb{display:block}}
 
-  /* sections */
-  section{ padding:56px 0; }
-  h2.section-title{ text-align:center; color:var(--accent2); margin:0 0 14px; font-size:20px; text-shadow:0 6px 20px rgba(255,90,30,0.06); }
-  p.lead-2{ text-align:center; color:rgba(255,255,255,0.9); max-width:900px; margin:12px auto 0; }
+    /* HERO */
+    .hero{min-height:74vh;display:flex;align-items:center;justify-content:center;padding:120px 0 60px;position:relative;overflow:hidden}
+    #lavaCanvas{position:absolute;inset:0;z-index:0;pointer-events:none}
+    .hero-card{position:relative;z-index:2;text-align:center;max-width:960px;padding:20px}
+    .brand-pill{display:inline-block;padding:6px 12px;border-radius:999px;background:linear-gradient(90deg,var(--accent),var(--accent2));color:#160400;font-weight:700;margin-bottom:14px}
+    h1{font-size:clamp(28px,5vw,56px);margin:0;color:#fff;text-shadow:0 8px 30px rgba(255,90,30,0.12)}
+    p.lead{margin-top:12px;color:rgba(255,255,255,0.95);max-width:820px;margin-left:auto;margin-right:auto}
+    .cta-row{margin-top:20px;display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+    .btn{padding:12px 18px;border-radius:999px;font-weight:700;background:linear-gradient(90deg,var(--accent),var(--accent2));color:#140300;box-shadow:0 12px 30px rgba(255,90,30,0.10);display:inline-flex;gap:8px;align-items:center}
+    .btn.ghost{background:transparent;border:1px solid rgba(255,255,255,0.06);color:var(--muted)}
 
-  /* cards layout */
-  .row{ display:grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap:18px; margin-top:18px; }
+    /* trust strip */
+    .trust{display:flex;gap:12px;justify-content:center;align-items:center;margin-top:18px;flex-wrap:wrap;color:rgba(255,255,255,0.9);font-size:13px}
 
-  .card{ background:var(--card); padding:18px; border-radius:12px; box-shadow:0 10px 30px rgba(0,0,0,0.45); }
+    /* SECTIONS */
+    section{padding:56px 0}
+    .title{ text-align:center;color:var(--accent2);font-size:20px;margin-bottom:8px }
+    .sub{ text-align:center;color:rgba(255,255,255,0.88);max-width:900px;margin:0 auto 18px; }
 
-  .stat-value{ font-size:clamp(20px,3.2vw,34px); color:var(--accent2); font-weight:800; }
+    /* grid */
+    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:18px;margin-top:18px}
 
-  /* tokenomics */
-  .token-row{ display:flex; align-items:center; gap:18px; justify-content:center; flex-wrap:wrap; margin-top:12px; }
-  .pie{ width:170px; height:170px; display:grid; place-items:center; }
+    .card{background:var(--card);padding:18px;border-radius:var(--radius);box-shadow:0 8px 28px rgba(0,0,0,0.5)}
 
-  .legend{ max-width:360px; text-align:left; }
-  .legend-item{ display:flex; gap:10px; align-items:center; margin-bottom:8px; }
-  .dot{ width:14px; height:14px; display:inline-block; border-radius:3px; }
+    /* counters */
+    .stat-value{font-size:clamp(18px,3.6vw,34px);color:var(--accent2);font-weight:800}
+    .stat-label{font-size:13px;color:var(--muted);margin-top:6px}
 
-  /* roadmap timeline */
-  .timeline{ display:flex; gap:16px; flex-wrap:wrap; justify-content:center; margin-top:12px; }
-  .step{ min-width:220px; padding:14px; border-radius:12px; background:linear-gradient(180deg, rgba(255,90,30,0.04), rgba(0,0,0,0.08)); opacity:0; transform:translateY(18px); transition:all .6s cubic-bezier(.2,.9,.2,1); box-shadow:0 10px 30px rgba(0,0,0,0.45); }
-  .step.visible{ opacity:1; transform:none; }
+    /* tokenomics */
+    .token-row{display:flex;gap:18px;align-items:center;justify-content:center;flex-wrap:wrap}
+    .pie{width:170px;height:170px}
+    .legend{max-width:360px;text-align:left}
+    .legend-item{display:flex;gap:8px;align-items:center;margin:8px 0}
+    .dot{width:14px;height:14px;border-radius:3px;display:inline-block}
 
-  /* builders */
-  .tools{ display:flex; gap:12px; flex-wrap:wrap; justify-content:center; margin-top:12px; }
-  .tool{ background:rgba(255,255,255,0.02); padding:12px 14px; border-radius:10px; min-width:140px; }
+    /* timeline/roadmap */
+    .timeline{display:flex;gap:16px;flex-wrap:wrap;justify-content:center;margin-top:12px}
+    .step{min-width:220px;padding:14px;border-radius:12px;background:linear-gradient(180deg, rgba(255,90,30,0.04), rgba(0,0,0,0.08));opacity:0;transform:translateY(18px);transition:all .6s cubic-bezier(.2,.9,.2,1);box-shadow:0 8px 30px rgba(0,0,0,0.45)}
+    .step.visible{opacity:1;transform:none}
 
-  /* FAQ */
-  .faq{ max-width:900px; margin:18px auto; text-align:left; }
-  .faq-item{ background:rgba(255,255,255,0.02); padding:12px; border-radius:10px; margin-bottom:8px; }
-  .faq-item strong{ color:var(--accent2); }
+    /* builders */
+    .tools{display:flex;gap:12px;flex-wrap:wrap;justify-content:center;margin-top:12px}
+    .tool{background:rgba(255,255,255,0.02);padding:12px 14px;border-radius:10px;min-width:140px;text-align:center;color:var(--muted)}
 
-  /* footer */
-  footer{ padding:28px 18px; text-align:center; color:#aaa; margin-top:18px; }
+    /* FAQ */
+    .faq{max-width:900px;margin:12px auto;text-align:left}
+    .faq-item{background:rgba(255,255,255,0.02);padding:12px;border-radius:10px;margin-bottom:8px}
+    .faq-item strong{color:var(--accent2)}
 
-  /* responsive tweaks */
-  @media (max-width:760px){
-    .nav-links{ display:none; }
-    .hero{ padding:140px 0 50px; }
-    .partners{ font-size:12px; }
-  }
-</style>
+    /* footer */
+    footer{padding:28px 18px;text-align:center;color:#aaa;background:linear-gradient(180deg, rgba(0,0,0,0.02), transparent)}
+
+    /* small screens */
+    @media(max-width:760px){.grid{grid-template-columns:1fr}.nav-inner{gap:8px}}
+  </style>
 </head>
 <body>
+  <!-- NAV -->
+  <header class="nav" role="banner">
+    <div class="nav-inner container">
+      <div class="logo">Brox<span style="color:var(--accent2)">Official</span></div>
 
-<!-- NAV -->
-<header class="nav" role="banner">
-  <div class="nav-inner container">
-    <div class="logo">Brox<span style="color:var(--accent2)">Official</span></div>
-    <nav class="nav-links" role="navigation" aria-label="Main">
-      <a href="#about">About</a>
-      <a href="#roadmap">Roadmap</a>
-      <a href="#builders">Builders</a>
-      <a href="#community" class="cta">Community</a>
-    </nav>
+      <nav class="nav-links" role="navigation" aria-label="Main navigation">
+        <a href="#about">About</a>
+        <a href="#roadmap">Roadmap</a>
+        <a href="#builders">Builders</a>
+        <a href="#community" class="btn-cta btn" style="padding:8px 14px">Join Community</a>
+      </nav>
+
+      <button class="hamb" aria-label="Open menu" onclick="toggleMobileMenu()">☰</button>
+    </div>
+  </header>
+
+  <!-- MOBILE MENU (hidden by default) -->
+  <div id="mobileMenu" style="display:none;position:fixed;right:18px;top:60px;background:rgba(0,0,0,0.8);padding:12px;border-radius:10px;z-index:90">
+    <a href="#about" onclick="toggleMobileMenu()">About</a><br/>
+    <a href="#roadmap" onclick="toggleMobileMenu()">Roadmap</a><br/>
+    <a href="#builders" onclick="toggleMobileMenu()">Builders</a><br/>
+    <a href="#community" class="btn" onclick="toggleMobileMenu()" style="display:inline-block;margin-top:8px">Join Community</a>
   </div>
-</header>
 
-<main>
   <!-- HERO -->
-  <section class="hero" id="hero" role="region" aria-label="Hero">
-    <canvas id="lavaCanvas" aria-hidden="true"></canvas>
-    <div class="hero-card container" data-parallax>
-      <div class="badge">BROX • OFFICIAL</div>
-      <h1>🔥 Brox Official — Born in Fire 🔥</h1>
-      <p class="lead">A community-driven meme coin with utility: airdrops, NFTs, mini-games and a strong roadmap. Join the fiery movement.</p>
+  <main>
+    <section class="hero" id="hero" role="region" aria-label="Hero">
+      <canvas id="lavaCanvas" aria-hidden="true"></canvas>
 
-      <div class="hero-ctas">
-        <a class="btn" href="https://t.me/brox_official" target="_blank" rel="noopener">Join Telegram</a>
-        <a class="btn ghost" href="https://x.com/brox_official" target="_blank" rel="noopener">Follow on X</a>
-      </div>
+      <div class="hero-card container" data-parallax>
+        <div class="brand-pill">BROX • OFFICIAL</div>
+        <h1>🔥 Brox Official — Born in Fire</h1>
+        <p class="lead">Community-driven meme token with utility: airdrops, NFTs, mini-games and a clear roadmap. Join the movement, stay safe, and verify announcements only from our official channels.</p>
 
-      <div class="partners" aria-hidden>
-        <div class="partner">Partner: DemoLab</div>
-        <div class="partner">Tracker: DemoScan</div>
-        <div class="partner">Community: BroxDAO</div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ABOUT -->
-  <section id="about" class="container" role="region" aria-labelledby="aboutTitle">
-    <h2 class="section-title">About Brox</h2>
-    <p class="lead-2">Brox Official is a community-first token born from the fiery spirit of memers and builders. We deliver a roadmap of airdrops, NFTs, mini-games and token utility to reward early supporters and grow a vibrant ecosystem.</p>
-  </section>
-
-  <!-- STATS & TOKENOMICS -->
-  <section class="container" role="region" aria-labelledby="statsTitle">
-    <div class="row">
-      <div class="card">
-        <h3 style="margin:0 0 8px;color:var(--accent2)">Live Stats</h3>
-        <div style="display:flex;gap:12px;align-items:center;justify-content:space-between">
-          <div>
-            <div class="stat-value" id="holders">0</div>
-            <div style="font-size:13px;color:var(--muted)">Holders</div>
-          </div>
-          <div>
-            <div class="stat-value" id="cap">$0</div>
-            <div style="font-size:13px;color:var(--muted)">Market Cap</div>
-          </div>
-          <div>
-            <div class="stat-value" id="vol">$0</div>
-            <div style="font-size:13px;color:var(--muted)">24h Volume</div>
-          </div>
+        <div class="cta-row">
+          <a class="btn" href="https://t.me/brox_official" target="_blank" rel="noopener">Join Telegram</a>
+          <a class="btn ghost" href="https://x.com/brox_official" target="_blank" rel="noopener">Follow on X</a>
+          <a class="btn" href="#whitepaper" onclick="openWhitepaper();return false;" style="background:#fff;color:#120200">Whitepaper</a>
         </div>
 
-        <div style="margin-top:14px">
-          <div style="font-size:13px;color:var(--muted)">Tokenomics</div>
-          <div class="token-row" style="margin-top:8px">
-            <div class="pie" id="pieWrap" aria-hidden>
-              <svg viewBox="0 0 32 32" width="160" height="160"><circle r="10" cx="16" cy="16" fill="transparent" stroke="#222" stroke-width="8"></circle></svg>
+        <div class="trust" aria-hidden>
+          <div>🔒 Verified contract</div>
+          <div>🤝 Community-led</div>
+          <div>📈 Audit pending</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="about" class="container">
+      <h3 class="title">About Brox</h3>
+      <p class="sub">Brox Official is built for creators and memers. We plan phased airdrops, NFTs reveals, mini-games with token rewards, and community governance. We focus on transparency: contract address & links provided below.</p>
+
+      <div class="grid">
+        <div class="card">
+          <h4>Mission</h4>
+          <p style="color:var(--muted)">Create a fun, sustainable ecosystem rewarding early contributors with clear utility and community governance.</p>
+        </div>
+        <div class="card">
+          <h4>Security</h4>
+          <p style="color:var(--muted)">We recommend verifying contract address on explorer links and follow only official channels listed on this page.</p>
+        </div>
+        <div class="card">
+          <h4>Contract</h4>
+          <p style="color:var(--muted);display:flex;gap:8px;align-items:center;flex-wrap:wrap">
+            <span id="contractShort">0x...xxxx</span>
+            <button onclick="copyContract()" style="padding:6px 10px;border-radius:8px;background:#222;border:0;color:var(--muted);cursor:pointer">Copy</button>
+            <a href="#" id="explorerLink" style="color:var(--accent2)">View on Explorer</a>
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- STATS & TOKENOMICS -->
+    <section class="container" id="stats">
+      <h3 class="title">Live Stats & Tokenomics</h3>
+      <p class="sub">Demo live-like numbers. We can connect a real API (CoinGecko or blockchain explorer) later to show live price/marketcap.</p>
+
+      <div class="grid">
+        <div class="card">
+          <div style="display:flex;justify-content:space-between;align-items:center">
+            <div>
+              <div class="stat-value" id="holders">0</div>
+              <div class="stat-label">Holders</div>
             </div>
-            <div class="legend">
-              <div class="legend-item"><span class="dot" style="background:#ff7a3b"></span> Team & Dev — 2%</div>
-              <div class="legend-item"><span class="dot" style="background:#ff3a00"></span> Liquidity — 40%</div>
-              <div class="legend-item"><span class="dot" style="background:#ffa363"></span> Marketing — 25%</div>
-              <div class="legend-item"><span class="dot" style="background:#ffc89a"></span> Airdrop — 20%</div>
-              <div class="legend-item"><span class="dot" style="background:#ffdcb0"></span> Reserve — 13%</div>
+            <div>
+              <div class="stat-value" id="cap">$0</div>
+              <div class="stat-label">Market Cap</div>
+            </div>
+            <div>
+              <div class="stat-value" id="vol">$0</div>
+              <div class="stat-label">24h Volume</div>
+            </div>
+          </div>
+
+          <div style="margin-top:14px">
+            <div style="font-size:13px;color:var(--muted)">Tokenomics</div>
+            <div class="token-row">
+              <div class="pie" id="pieWrap" aria-hidden>
+                <svg viewBox="0 0 32 32" width="160" height="160"><circle r="10" cx="16" cy="16" fill="transparent" stroke="#222" stroke-width="8"></circle></svg>
+              </div>
+              <div class="legend">
+                <div class="legend-item"><span class="dot" style="background:#ff7a3b"></span> Team & Dev — 2%</div>
+                <div class="legend-item"><span class="dot" style="background:#ff3a00"></span> Liquidity — 40%</div>
+                <div class="legend-item"><span class="dot" style="background:#ffa363"></span> Marketing — 25%</div>
+                <div class="legend-item"><span class="dot" style="background:#ffc89a"></span> Airdrop — 20%</div>
+                <div class="legend-item"><span class="dot" style="background:#ffdcb0"></span> Reserve — 13%</div>
+              </div>
             </div>
           </div>
         </div>
-      </div>
 
-      <div class="card" id="builders">
-        <h3 style="margin:0 0 8px;color:var(--accent2)">Builders & Dev Tools</h3>
-        <p style="color:var(--muted);margin:0 0 12px">Docs, SDKs and wallet adapters to help you integrate Brox quickly.</p>
-        <div class="tools" aria-hidden>
-          <div class="tool">Docs (coming)</div>
-          <div class="tool">SDK (coming)</div>
-          <div class="tool">Wallet Adapter (coming)</div>
+        <div class="card" id="builders">
+          <h4>Builders & Dev Tools</h4>
+          <p style="color:var(--muted)">Documentation, SDK & wallet adapters coming soon. We provide examples and quickstart guides for integrators.</p>
+          <div class="tools" aria-hidden>
+            <div class="tool">Docs (soon)</div>
+            <div class="tool">SDK (soon)</div>
+            <div class="tool">Wallet Adapter (soon)</div>
+          </div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- ROADMAP -->
-  <section id="roadmap" class="container" role="region" aria-labelledby="roadmapTitle">
-    <h2 class="section-title">Roadmap</h2>
-    <div class="timeline" id="timeline">
-      <div class="step"><h4>Phase 1</h4><p>Launch community, whitepaper & initial distribution.</p></div>
-      <div class="step"><h4>Phase 2</h4><p>Marketing wave, airdrops & partnerships.</p></div>
-      <div class="step"><h4>Phase 3</h4><p>Mini-games, NFT drops & utility beta.</p></div>
-      <div class="step"><h4>Phase 4</h4><p>Listings, governance & ecosystem expansion.</p></div>
-    </div>
-  </section>
+    <!-- ROADMAP -->
+    <section id="roadmap" class="container">
+      <h3 class="title">Roadmap</h3>
+      <p class="sub">Clear phased plan — steady and transparent growth.</p>
 
-  <!-- FAQ -->
-  <section class="container">
-    <h2 class="section-title">FAQ</h2>
-    <div class="faq">
-      <div class="faq-item"><strong>What is Brox?</strong><div style="margin-top:8px;color:var(--muted)">A community token with memes, utility, and collectibles.</div></div>
-      <div class="faq-item"><strong>How to join?</strong><div style="margin-top:8px;color:var(--muted)">Join our Telegram and follow X for announcements and airdrops.</div></div>
-    </div>
-  </section>
-</main>
+      <div class="timeline" id="timeline">
+        <div class="step"><strong>Phase 1</strong><p>Launch community, whitepaper & initial distribution.</p></div>
+        <div class="step"><strong>Phase 2</strong><p>Marketing, strategic partnerships & airdrops.</p></div>
+        <div class="step"><strong>Phase 3</strong><p>Mini-games, NFTs & early utility releases.</p></div>
+        <div class="step"><strong>Phase 4</strong><p>Listings, governance & ecosystem expansion.</p></div>
+      </div>
+    </section>
 
-<footer>
-  <div class="container">© <span id="yr"></span> Brox Official • <a href="https://t.me/brox_official" target="_blank">Telegram</a> • <a href="https://x.com/brox_official" target="_blank">X</a></div>
-</footer>
+    <!-- FAQ -->
+    <section class="container">
+      <h3 class="title">FAQ</h3>
+      <div class="faq">
+        <div class="faq-item"><strong>What is Brox?</strong><div style="margin-top:8px;color:var(--muted)">A community token with memes, utility, and collectibles.</div></div>
+        <div class="faq-item"><strong>How to join?</strong><div style="margin-top:8px;color:var(--muted)">Join our Telegram and follow X for official announcements and airdrops.</div></div>
+        <div class="faq-item"><strong>How can I verify?</strong><div style="margin-top:8px;color:var(--muted)">Always use contract links on this site; official announcements are posted only on the channels above.</div></div>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container">© <span id="yr"></span> Brox Official • <a href="https://t.me/brox_official" target="_blank">Telegram</a> • <a href="https://x.com/brox_official" target="_blank">X</a></div>
+  </footer>
+
+  <!-- Whitepaper modal (simple) -->
+  <div id="whitepaperModal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.7);z-index:120;align-items:center;justify-content:center">
+    <div style="background:#0c0503;padding:18px;border-radius:12px;max-width:900px;width:92%;color:#fff">
+      <div style="display:flex;justify-content:space-between;align-items:center">
+        <h3 style="margin:0">Brox Official — Whitepaper</h3>
+        <button onclick="closeWhitepaper()" style="background:transparent;border:0;color:#fff;font-size:20px;cursor:pointer">✕</button>
+      </div>
+      <p style="color:var(--muted)">(ضع هنا المحتوى أو رابط تحميل الـ Whitepaper — يمكنك أيضاً استبدال المحتوى بنص تفصيلي).</p>
+      <a href="whitepaper.pdf" download style="display:inline-block;margin-top:10px;padding:10px 16px;border-radius:8px;background:linear-gradient(90deg,var(--accent),var(--accent2));color:#120200">Download Whitepaper (PDF)</a>
+    </div>
+  </div>
 
 <script>
-/* ---------- Lava particle canvas (lightweight) ---------- */
+/* ======= Mobile menu toggle ======= */
+function toggleMobileMenu(){
+  const el = document.getElementById('mobileMenu');
+  el.style.display = (el.style.display === 'none' || el.style.display === '') ? 'block' : 'none';
+}
+
+/* ======= Canvas lava particles (lightweight) ======= */
 (function(){
   const canvas = document.getElementById('lavaCanvas');
   if(!canvas) return;
   const ctx = canvas.getContext('2d');
-  let w,h, parts=[];
+  let w,h,parts=[];
   function resize(){ w=canvas.width=innerWidth; h=canvas.height=innerHeight; }
-  window.addEventListener('resize', resize);
-  resize();
-  function rand(min,max){ return Math.random()*(max-min)+min; }
-  function spawn(n){ for(let i=0;i<n;i++){ parts.push({ x:rand(0,w), y:rand(h*0.85,h+60), vx:rand(-0.4,0.4), vy:rand(-1.6,-0.6), r:rand(0.9,3.2), life:rand(80,220), hue:rand(10,40) }); } }
+  window.addEventListener('resize', resize); resize();
+  function rand(a,b){return Math.random()*(b-a)+a}
+  function spawn(n){ for(let i=0;i<n;i++) parts.push({x:rand(0,w),y:rand(h*0.82,h+60),vx:rand(-0.4,0.4),vy:rand(-1.6,-0.6),r:rand(0.9,3.2),life:rand(80,220),hue:rand(10,40)}); }
   spawn(Math.floor((w*h)/120000));
-  function draw(){
+  function loop(){
     ctx.clearRect(0,0,w,h);
-    // subtle dark gradient overlay
-    const g = ctx.createLinearGradient(0,0,0,h);
-    g.addColorStop(0,'rgba(255,80,40,0.02)');
-    g.addColorStop(1,'rgba(0,0,0,0.6)');
-    ctx.fillStyle = g; ctx.fillRect(0,0,w,h);
     for(let i=parts.length-1;i>=0;i--){
-      const p = parts[i];
-      p.x += p.vx; p.y += p.vy; p.life--;
-      const alpha = Math.max(0, Math.min(1, p.life/220));
+      const p=parts[i]; p.x+=p.vx; p.y+=p.vy; p.life--;
+      const a=Math.max(0,Math.min(1,p.life/220));
       ctx.beginPath();
-      ctx.fillStyle = 'hsla('+p.hue+',90%,'+(50 + (p.r*3))+'%,'+(0.12*alpha)+')';
-      ctx.shadowBlur = 12*alpha; ctx.shadowColor = 'rgba(255,120,30,'+(0.2*alpha)+')';
-      ctx.arc(p.x,p.y,p.r*(1+(1-alpha)*0.6),0,Math.PI*2); ctx.fill();
-      if(p.life<=0||p.y<-20||p.x<-50||p.x>w+50){ parts.splice(i,1); parts.push({ x:rand(0,w), y:rand(h*0.9,h+40), vx:rand(-0.5,0.5), vy:rand(-1.8,-0.6), r:rand(0.9,3.2), life:rand(80,220), hue:rand(10,40) }); }
+      ctx.fillStyle='hsla('+p.hue+',90%,'+(50+(p.r*3))+'%,'+(0.12*a)+')';
+      ctx.shadowBlur=12*a; ctx.shadowColor='rgba(255,120,30,'+(0.18*a)+')';
+      ctx.arc(p.x,p.y,p.r*(1+(1-a)*0.6),0,Math.PI*2); ctx.fill();
+      if(p.life<=0||p.y<-20||p.x<-50||p.x>w+50){ parts.splice(i,1); parts.push({x:rand(0,w),y:rand(h*0.9,h+40),vx:rand(-0.5,0.5),vy:rand(-1.8,-0.6),r:rand(0.9,3.2),life:rand(80,220),hue:rand(10,40)}); }
     }
-    requestAnimationFrame(draw);
+    requestAnimationFrame(loop);
   }
-  draw();
+  loop();
 })();
 
-/* ---------- Counters ---------- */
+/* ======= Counters (animated) ======= */
 (function(){
-  function animate(id, end, ms, prefix='') {
+  function animate(id, end, ms, formatFn){
     const el = document.getElementById(id); if(!el) return;
-    let start = null;
-    function step(ts){
+    let start=null;
+    const step = (ts)=>{
       if(!start) start = ts;
       const prog = Math.min((ts-start)/ms,1);
       const val = Math.floor(prog * end);
-      el.textContent = (id==='cap' || id==='vol') ? ('$' + val.toLocaleString()) : val.toLocaleString();
+      el.textContent = formatFn ? formatFn(val) : val.toLocaleString();
       if(prog < 1) requestAnimationFrame(step);
-    }
+    };
     requestAnimationFrame(step);
   }
-  // values you asked: Holders 133+, Market Cap $20.5k, Volume 5.6K
-  animate('holders', 133, 1400);
-  animate('cap', 20500, 1600);
-  animate('vol', 5600, 1500);
+  // القيم المطلوبة منك: Holders 133+, Market Cap 20.5k, Volume 5.6k
+  animate('holders', 133, 1200);
+  animate('cap', 20500, 1400, v => '$' + v.toLocaleString());
+  animate('vol', 5600, 1300, v => '$' + v.toLocaleString());
 })();
 
-/* ---------- Pie Chart (Tokenomics) ---------- */
+/* ======= Tokenomics pie (SVG slices) ======= */
 (function(){
-  // slices from your spec + reserve to reach 100%
   const slices = [
-    {value:2, color:'#ff7a3b'}, {value:40, color:'#ff3a00'}, {value:25, color:'#ffa363'}, {value:20, color:'#ffc89a'}, {value:13, color:'#ffdcb0'}
+    {value:2,color:'#ff7a3b'}, {value:40,color:'#ff3a00'}, {value:25,color:'#ffa363'}, {value:20,color:'#ffc89a'}, {value:13,color:'#ffdcb0'}
   ];
   const svg = document.querySelector('#pieWrap svg');
   if(!svg) return;
-  const circ = 2 * Math.PI * 10;
-  let offset = 0;
+  const circ = 2 * Math.PI * 10; let offset = 0;
   slices.forEach(s=>{
     const portion = (s.value/100) * circ;
     const c = document.createElementNS('http://www.w3.org/2000/svg','circle');
@@ -278,24 +354,58 @@
   });
 })();
 
-/* ---------- Reveal on scroll for timeline ---------- */
+/* ======= Roadmap reveal on scroll ======= */
 (function(){
-  const obs = new IntersectionObserver((entries)=>{
-    entries.forEach(e=>{
-      if(e.isIntersecting) e.target.classList.add('visible');
-    });
+  const steps = document.querySelectorAll('.step');
+  const obs = new IntersectionObserver(entries=>{
+    entries.forEach(e=>{ if(e.isIntersecting) e.target.classList.add('visible'); });
   },{threshold:0.22});
-  document.querySelectorAll('.step').forEach(s=>obs.observe(s));
+  steps.forEach(s => obs.observe(s));
 })();
 
-/* ---------- Footer year ---------- */
+/* ======= Copy contract helper ======= */
+function copyContract(){
+  const text = prompt('Paste your contract address here (edit inline in the site)') || '';
+  if(text) {
+    navigator.clipboard?.writeText(text).then(()=> alert('Contract copied ✔️'));
+    // update visible short contract text & explorer link
+    document.getElementById('contractShort').textContent = text.slice(0,8) + '…' + text.slice(-6);
+    document.getElementById('explorerLink').href = 'https://etherscan.io/address/' + text; // تعديل للبلوكشين الصحيح
+  }
+}
+
+/* ======= Whitepaper modal ======= */
+function openWhitepaper(){ document.getElementById('whitepaperModal').style.display = 'flex'; }
+function closeWhitepaper(){ document.getElementById('whitepaperModal').style.display = 'none'; }
+
+/* ======= Footer year ======= */
 document.getElementById('yr').textContent = new Date().getFullYear();
 
-/* ---------- Reduce motion support ---------- */
-if(window.matchMedia('(prefers-reduced-motion: reduce)').matches){
-  document.documentElement.style.scrollBehavior = 'auto';
+/* ======= Accessibility: respect reduced-motion ======= */
+if(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches){
+  // simple fallback: remove canvas animation by hiding it
+  const c = document.getElementById('lavaCanvas'); if(c) c.style.display = 'none';
 }
+
+/* ======= OPTIONAL: fetch live price from CoinGecko if token listed (uncomment when ready) =======
+fetch('https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids=your-token-id')
+  .then(r=>r.json()).then(data=>{
+    if(data && data[0]) {
+      document.getElementById('cap').textContent = '$' + Math.round(data[0].market_cap).toLocaleString();
+      document.getElementById('vol').textContent = '$' + Math.round(data[0].total_volume).toLocaleString();
+      document.getElementById('holders').textContent = (data[0].community_data?.facebook_likes || 0).toLocaleString(); // مثال فقط
+    }
+  }).catch(()=>{ /* fallback keep demo values */ });
+*/
+
 </script>
+
+<!-- ======= ANALYTICS / PRIVACY =======
+Add Google Analytics or Plausible here (if you want). Example placeholder:
+<script async src="https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID"></script>
+<script>window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date()); gtag('config', 'GA_MEASUREMENT_ID');</script>
+-->
 
 </body>
 </html>
