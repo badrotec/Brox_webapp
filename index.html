@@ -1,494 +1,880 @@
-<!doctype html>
-<html lang="en">
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Brox Official — Born in Fire</title>
-  <meta name="description" content="Brox Official — community-driven token. Airdrops, NFTs, mini-games and an epic roadmap." />
-  <meta property="og:title" content="Brox Official — Born in Fire">
-  <meta property="og:description" content="Brox Official — community-driven token built from lava.">
-  <meta property="og:type" content="website">
-  <link rel="icon" href="data:;base64,iVBORw0KGgo=">
-  <!-- Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Poppins:wght@600;800&display=swap" rel="stylesheet">
-  <!-- CDNs -->
-  <script src="https://unpkg.com/three@0.154.0/build/three.min.js"></script>
-  <script src="https://unpkg.com/three@0.154.0/examples/js/controls/OrbitControls.js"></script>
-  <script src="https://unpkg.com/three@0.154.0/examples/js/postprocessing/EffectComposer.js"></script>
-  <script src="https://unpkg.com/three@0.154.0/examples/js/postprocessing/RenderPass.js"></script>
-  <script src="https://unpkg.com/three@0.154.0/examples/js/postprocessing/UnrealBloomPass.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Brox Official | Born in Fire, Driven by Community</title>
+    <meta name="description" content="Brox Official - العملة الرقمية المجتمعية الجديدة. انضم إلى مجتمعنا المتنامي وكن جزءاً من المستقبل الرقمي.">
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="Brox Official - $BROX">
+    <meta property="og:description" content="Born in Fire, Driven by Community - The Next Generation Cryptocurrency">
+    <meta property="og:type" content="website">
+    
+    <!-- Fonts -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-  <style>
-    :root{
-      --bg1:#070203; --bg2:#2b0600; --accent:#ff6a2b; --accent-2:#ffb38a; --muted:rgba(255,255,255,0.85);
-      --glass: rgba(255,255,255,0.03);
-    }
-    *{box-sizing:border-box}
-    html,body{height:100%;margin:0;font-family:Inter,system-ui,Arial;background:linear-gradient(180deg,var(--bg1),#120200);color:#fff;overflow-x:hidden}
-    a{color:inherit}
-    .container{max-width:1200px;margin:0 auto;padding:0 20px}
-    /* NAV */
-    header.nav{position:fixed;top:12px;left:0;right:0;z-index:200;display:flex;justify-content:center;pointer-events:none}
-    .nav-inner{width:100%;max-width:1200px;display:flex;align-items:center;justify-content:space-between;padding:8px 20px;background:linear-gradient(180deg,rgba(0,0,0,0.25),rgba(0,0,0,0));border-radius:12px;pointer-events:auto}
-    .logo{font-weight:800;color:var(--accent);font-family:Poppins,Inter}
-    .menu{display:flex;gap:12px;align-items:center}
-    .menu a{padding:8px 12px;border-radius:8px;color:var(--muted);font-weight:600;text-decoration:none}
-    .menu a.cta{background:linear-gradient(90deg,var(--accent),var(--accent-2));color:#120200;box-shadow:0 10px 30px rgba(255,90,30,0.08)}
-    @media(max-width:880px){.menu a:not(.cta){display:none}}
+        :root {
+            --primary-color: #ff6b35;
+            --secondary-color: #004e92;
+            --accent-color: #ffd700;
+            --dark-bg: #0a0a0a;
+            --card-bg: rgba(255, 255, 255, 0.05);
+            --text-primary: #ffffff;
+            --text-secondary: #b0b0b0;
+            --gradient-fire: linear-gradient(135deg, #ff6b35, #f7931e, #ffd700);
+            --gradient-dark: linear-gradient(135deg, #0a0a0a, #1a1a2e, #16213e);
+        }
 
-    /* HERO heavy scene */
-    .hero-wrap{position:relative;height:88vh;min-height:560px;display:flex;align-items:center;justify-content:center}
-    #threeCanvas{position:absolute;inset:0;z-index:0;display:block}
-    #lavaCanvas{position:absolute;inset:0;z-index:1;pointer-events:none}
-    .hero-content{position:relative;z-index:3;text-align:center;padding:40px 20px;max-width:980px}
-    .brand{display:inline-block;padding:8px 16px;border-radius:999px;background:linear-gradient(90deg,var(--accent),var(--accent-2));color:#120200;font-weight:700;margin-bottom:14px}
-    h1{font-family:Poppins,Inter;font-size:clamp(32px,6vw,64px);line-height:1;margin:0;text-shadow:0 12px 40px rgba(255,80,30,0.12);color:#fff}
-    .lead{margin-top:14px;color:rgba(255,255,255,0.92);font-size:1.05rem}
-    .cta-row{margin-top:22px;display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--gradient-dark);
+            color: var(--text-primary);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
 
-    .btn{display:inline-flex;align-items:center;gap:8px;background:linear-gradient(90deg,var(--accent),var(--accent-2));color:#120200;padding:12px 18px;border-radius:999px;font-weight:700;border:none;cursor:pointer;box-shadow:0 12px 40px rgba(255,90,30,0.10)}
-    .btn.ghost{background:transparent;border:1px solid rgba(255,255,255,0.06);color:var(--muted)}
+        /* Animated Background */
+        .animated-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            opacity: 0.1;
+        }
 
-    /* DETAILS AREA */
-    main{position:relative;z-index:10}
-    section{padding:60px 0}
-    .section-title{font-family:Poppins,Inter;color:var(--accent-2);text-align:center;margin-bottom:12px;font-size:20px}
-    .section-lead{max-width:900px;margin:0 auto;text-align:center;color:rgba(255,255,255,0.9);margin-bottom:22px}
+        .flame {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: var(--gradient-fire);
+            border-radius: 50%;
+            animation: float 6s infinite ease-in-out;
+        }
 
-    /* stats + tokenomics */
-    .grid{display:grid;grid-template-columns:repeat(12,1fr);gap:20px;align-items:start}
-    .col-7{grid-column:span 7}
-    .col-5{grid-column:span 5}
-    @media(max-width:900px){.grid{grid-template-columns:1fr}.col-7,.col-5{grid-column:span 1}}
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); opacity: 0; }
+            50% { transform: translateY(-100vh) rotate(180deg); opacity: 1; }
+        }
 
-    .card{background:var(--glass);border-radius:14px;padding:18px;border:1px solid rgba(255,255,255,0.03);box-shadow:0 10px 30px rgba(0,0,0,0.5)}
-    .stats-row{display:flex;gap:14px;align-items:center;justify-content:space-between;flex-wrap:wrap}
-    .stat{flex:1;min-width:120px;text-align:center}
-    .stat .num{font-size:clamp(18px,4vw,32px);color:var(--accent-2);font-weight:800}
-    .stat .lbl{color:rgba(255,255,255,0.85);font-weight:600;font-size:13px}
+        @keyframes slideInUp {
+            from { transform: translateY(50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
 
-    /* roadmap timeline */
-    .timeline{display:flex;flex-direction:column;gap:18px;margin-top:8px}
-    .timeline .item{display:flex;gap:16px;align-items:flex-start}
-    .timeline .bullet{width:12px;height:12px;border-radius:50%;background:linear-gradient(90deg,var(--accent),var(--accent-2));margin-top:8px;flex:0 0 12px}
-    .timeline .content{background:rgba(255,255,255,0.02);padding:14px;border-radius:10px;flex:1}
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
 
-    /* builders */
-    .tools{display:flex;gap:12px;flex-wrap:wrap;margin-top:12px;justify-content:center}
-    .tool{padding:12px 14px;border-radius:10px;background:rgba(255,255,255,0.02);min-width:140px;text-align:center}
+        /* Header */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(20px);
+            z-index: 1000;
+            padding: 1rem 0;
+            transition: all 0.3s ease;
+        }
 
-    /* faq */
-    .faq{max-width:900px;margin:0 auto}
-    .faq .q{background:rgba(255,255,255,0.02);padding:12px;border-radius:10px;margin-bottom:8px;cursor:pointer;display:flex;justify-content:space-between;align-items:center}
-    .faq .a{padding:10px 12px;background:rgba(0,0,0,0.3);border-radius:8px;margin-bottom:8px;display:none}
+        .nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
 
-    /* footer */
-    footer{padding:40px 0;text-align:center;color:#aaa;border-top:1px solid rgba(255,255,255,0.03)}
-    footer a{color:var(--accent-2);text-decoration:none;margin:0 8px}
+        .logo {
+            font-size: 2rem;
+            font-weight: 800;
+            background: var(--gradient-fire);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
 
-    /* tiny helpers */
-    .muted{color:rgba(255,255,255,0.7);font-size:13px}
-  </style>
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: var(--text-primary);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--gradient-fire);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .social-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: var(--card-bg);
+            border: 1px solid rgba(255, 107, 53, 0.3);
+            border-radius: 50%;
+            color: var(--text-primary);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .social-btn:hover {
+            background: var(--gradient-fire);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(255, 107, 53, 0.4);
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            padding: 0 2rem;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            z-index: 2;
+        }
+
+        .hero h1 {
+            font-size: 4.5rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            background: var(--gradient-fire);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: slideInUp 1s ease;
+        }
+
+        .hero .ticker {
+            font-size: 2rem;
+            color: var(--accent-color);
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            animation: slideInUp 1s ease 0.2s both;
+        }
+
+        .hero .tagline {
+            font-size: 1.5rem;
+            color: var(--text-secondary);
+            margin-bottom: 3rem;
+            font-weight: 300;
+            animation: slideInUp 1s ease 0.4s both;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            animation: slideInUp 1s ease 0.6s both;
+        }
+
+        .btn {
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .btn-primary {
+            background: var(--gradient-fire);
+            color: var(--dark-bg);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--text-primary);
+            border: 2px solid var(--primary-color);
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(255, 107, 53, 0.4);
+        }
+
+        /* Stats Section */
+        .stats {
+            padding: 5rem 2rem;
+            background: rgba(255, 255, 255, 0.02);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            text-align: center;
+        }
+
+        .stat-card {
+            background: var(--card-bg);
+            backdrop-filter: blur(20px);
+            padding: 2rem;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 107, 53, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary-color);
+            box-shadow: 0 10px 30px rgba(255, 107, 53, 0.2);
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 800;
+            background: var(--gradient-fire);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            color: var(--text-secondary);
+            font-weight: 500;
+        }
+
+        /* Features Section */
+        .features {
+            padding: 5rem 2rem;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 3rem;
+            background: var(--gradient-fire);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .feature-card {
+            background: var(--card-bg);
+            backdrop-filter: blur(20px);
+            padding: 2.5rem;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 107, 53, 0.2);
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary-color);
+            box-shadow: 0 10px 30px rgba(255, 107, 53, 0.2);
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            background: var(--gradient-fire);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 1.5rem;
+        }
+
+        .feature-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+        }
+
+        .feature-description {
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        /* Community Section */
+        .community {
+            padding: 5rem 2rem;
+            background: rgba(255, 255, 255, 0.02);
+            text-align: center;
+        }
+
+        .community-content {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .community-description {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            margin-bottom: 3rem;
+            line-height: 1.7;
+        }
+
+        .social-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .social-card {
+            background: var(--card-bg);
+            backdrop-filter: blur(20px);
+            padding: 2rem;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 107, 53, 0.2);
+            transition: all 0.3s ease;
+            text-decoration: none;
+            color: var(--text-primary);
+        }
+
+        .social-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary-color);
+            box-shadow: 0 10px 30px rgba(255, 107, 53, 0.2);
+        }
+
+        .social-icon {
+            font-size: 2.5rem;
+            background: var(--gradient-fire);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 1rem;
+        }
+
+        .social-name {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .social-handle {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        /* Footer */
+        .footer {
+            padding: 3rem 2rem 2rem;
+            text-align: center;
+            border-top: 1px solid rgba(255, 107, 53, 0.2);
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-logo {
+            font-size: 2rem;
+            font-weight: 800;
+            background: var(--gradient-fire);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 1rem;
+        }
+
+        .footer-text {
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .copyright {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 2rem;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .nav {
+                padding: 0 1rem;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+
+            .hero h1 {
+                font-size: 3rem;
+            }
+
+            .hero .ticker {
+                font-size: 1.5rem;
+            }
+
+            .hero .tagline {
+                font-size: 1.2rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .btn {
+                width: 100%;
+                max-width: 300px;
+                justify-content: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .stats, .features, .community {
+                padding: 3rem 1rem;
+            }
+        }
+
+        /* Loading Animation */
+        .loading {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--dark-bg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10000;
+            opacity: 1;
+            transition: opacity 0.5s ease;
+        }
+
+        .loading.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .loader {
+            width: 50px;
+            height: 50px;
+            border: 3px solid transparent;
+            border-top: 3px solid var(--primary-color);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
 </head>
 <body>
-
-  <!-- NAV -->
-  <header class="nav" role="banner">
-    <div class="nav-inner container">
-      <div class="logo">Brox<span style="color:var(--accent-2)">Official</span></div>
-      <nav class="menu" role="navigation" aria-label="Main">
-        <a href="#about">About</a>
-        <a href="#tokenomics">Tokenomics</a>
-        <a href="#roadmap">Roadmap</a>
-        <a href="#builders">Builders</a>
-        <a href="#community" class="cta">Community</a>
-      </nav>
+    <!-- Loading Screen -->
+    <div class="loading" id="loading">
+        <div class="loader"></div>
     </div>
-  </header>
 
-  <!-- HERO: heavy scene -->
-  <section class="hero-wrap">
-    <canvas id="threeCanvas" aria-hidden="true"></canvas>
-    <canvas id="lavaCanvas" aria-hidden="true"></canvas>
+    <!-- Animated Background -->
+    <div class="animated-bg" id="animatedBg"></div>
 
-    <div class="hero-content container" role="region" aria-label="Hero">
-      <div class="brand">BROX • OFFICIAL</div>
-      <h1>🔥 Brox Official — Born in Fire</h1>
-      <p class="lead">A community-driven token forged in lava. Airdrops, NFTs, mini-games and an epic roadmap — built for memers & builders.</p>
-      <div class="cta-row">
-        <button class="btn" onclick="openTelegram()">Join Telegram</button>
-        <button class="btn ghost" onclick="openX()">Follow on X</button>
-      </div>
-      <div style="margin-top:14px" class="muted">Verified contract • Community governed • Audit incoming</div>
-    </div>
-  </section>
-
-  <main>
-    <!-- ABOUT -->
-    <section id="about" class="container">
-      <h3 class="section-title">About Brox</h3>
-      <p class="section-lead">Brox Official unites memers and builders. We deliver a clear roadmap, community rewards, token utility and creative experiences.</p>
-    </section>
-
-    <!-- STATS + TOKENOMICS -->
-    <section id="tokenomics" class="container">
-      <div class="grid">
-        <div class="col-7">
-          <div class="card">
-            <div class="stats-row">
-              <div class="stat"><div class="num" id="holders">0</div><div class="lbl">Holders</div></div>
-              <div class="stat"><div class="num" id="mcap">$0</div><div class="lbl">Market Cap</div></div>
-              <div class="stat"><div class="num" id="vol">$0</div><div class="lbl">24h Volume</div></div>
+    <!-- Header -->
+    <header class="header">
+        <nav class="nav">
+            <div class="logo">BROX</div>
+            <ul class="nav-links">
+                <li><a href="#home">الرئيسية</a></li>
+                <li><a href="#about">حول</a></li>
+                <li><a href="#features">المزايا</a></li>
+                <li><a href="#community">المجتمع</a></li>
+            </ul>
+            <div class="social-links">
+                <a href="https://t.me/brox_official" class="social-btn" target="_blank" rel="noopener">
+                    <i class="fab fa-telegram"></i>
+                </a>
+                <a href="https://x.com/brox_official" class="social-btn" target="_blank" rel="noopener">
+                    <i class="fab fa-x-twitter"></i>
+                </a>
             </div>
+        </nav>
+    </header>
 
-            <canvas id="pieChart" width="340" height="240" style="display:block;margin:22px auto;"></canvas>
-            <div style="display:flex;gap:10px;justify-content:center;margin-top:8px;flex-wrap:wrap">
-              <div style="display:flex;gap:8px;align-items:center"><span style="width:12px;height:12px;background:#ff7a3b;display:inline-block"></span> Team 2%</div>
-              <div style="display:flex;gap:8px;align-items:center"><span style="width:12px;height:12px;background:#ff3a00;display:inline-block"></span> Liquidity 40%</div>
-              <div style="display:flex;gap:8px;align-items:center"><span style="width:12px;height:12px;background:#ffa363;display:inline-block"></span> Marketing 25%</div>
-              <div style="display:flex;gap:8px;align-items:center"><span style="width:12px;height:12px;background:#ffc89a;display:inline-block"></span> Airdrop 20%</div>
-              <div style="display:flex;gap:8px;align-items:center"><span style="width:12px;height:12px;background:#ffdcb0;display:inline-block"></span> Reserve 13%</div>
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <h1>Brox Official</h1>
+            <div class="ticker">$BROX</div>
+            <p class="tagline">Born in Fire, Driven by Community</p>
+            <div class="cta-buttons">
+                <a href="https://t.me/brox_official" class="btn btn-primary" target="_blank" rel="noopener">
+                    <i class="fab fa-telegram"></i>
+                    انضم للمجتمع
+                </a>
+                <a href="#features" class="btn btn-secondary">
+                    <i class="fas fa-rocket"></i>
+                    اكتشف المزيد
+                </a>
             </div>
-          </div>
         </div>
+    </section>
 
-        <div class="col-5">
-          <div class="card">
-            <h3 style="margin-bottom:8px">Quick Facts</h3>
-            <p class="muted">Contract verified • No rug intent • Community treasury</p>
-            <div style="margin-top:14px">
-              <div style="display:flex;gap:8px;align-items:center;margin-bottom:8px">
-                <strong style="min-width:90px">Network</strong><span class="muted">Ethereum (example)</span>
-              </div>
-              <div style="display:flex;gap:8px;align-items:center;margin-bottom:8px">
-                <strong style="min-width:90px">Total Supply</strong><span class="muted">1,000,000,000 BROX</span>
-              </div>
-              <div style="display:flex;gap:8px;align-items:center">
-                <strong style="min-width:90px">Contract</strong>
-                <div class="muted" id="contractShort">0x...xxxx</div>
-                <button onclick="copyContract()" style="margin-left:8px;padding:6px 10px;border-radius:8px;background:#222;border:0;color:#fff;cursor:pointer">Copy</button>
-              </div>
+    <!-- Stats Section -->
+    <section class="stats">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <span class="stat-number">1M+</span>
+                    <span class="stat-label">إجمالي المعروض</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number">10K+</span>
+                    <span class="stat-label">حاملي العملة</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number">50K+</span>
+                    <span class="stat-label">أعضاء المجتمع</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number">24/7</span>
+                    <span class="stat-label">دعم المجتمع</span>
+                </div>
             </div>
-            <div style="margin-top:18px;display:flex;gap:10px;flex-wrap:wrap">
-              <button class="btn ghost" onclick="openDocs()">Docs</button>
-              <button class="btn ghost" onclick="openSDK()">SDK</button>
-            </div>
-          </div>
         </div>
-
-      </div>
     </section>
 
-    <!-- ROADMAP -->
-    <section id="roadmap" class="container">
-      <h3 class="section-title">Roadmap</h3>
-      <p class="section-lead">Phased, transparent growth with milestones and community rewards.</p>
-
-      <div class="timeline">
-        <div class="item"><div class="bullet"></div><div class="content"><strong>Phase 1</strong><p class="muted">Community launch, whitepaper & initial distribution.</p></div></div>
-        <div class="item"><div class="bullet"></div><div class="content"><strong>Phase 2</strong><p class="muted">Marketing wave, airdrops & partnerships.</p></div></div>
-        <div class="item"><div class="bullet"></div><div class="content"><strong>Phase 3</strong><p class="muted">Mini-games, NFT drops & early utilities.</p></div></div>
-        <div class="item"><div class="bullet"></div><div class="content"><strong>Phase 4</strong><p class="muted">Listings, governance & ecosystem expansion.</p></div></div>
-      </div>
+    <!-- Features Section -->
+    <section class="features" id="features">
+        <div class="container">
+            <h2 class="section-title">لماذا Brox؟</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-fire"></i>
+                    </div>
+                    <h3 class="feature-title">مولود من النار</h3>
+                    <p class="feature-description">عملة رقمية قوية ومبتكرة، تم تصميمها لتحمل تقلبات السوق وتنمو بقوة مع مرور الوقت.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3 class="feature-title">مجتمع قوي</h3>
+                    <p class="feature-description">مجتمع متفان ونشط يدعم نمو العملة ويشارك في اتخاذ القرارات المهمة للمشروع.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3 ="feature-title">أمان عالي</h3>
+                    <p class="feature-description">تقنية blockchain متقدمة تضمن الأمان والشفافية في جميع المعاملات.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3 class="feature-title">نمو مستدام</h3>
+                    <p class="feature-description">استراتيجية نمو محكمة تهدف إلى بناء قيمة حقيقية ومستدامة للمستثمرين.</p>
+                </div>
+            </div>
+        </div>
     </section>
 
-    <!-- BUILDERS -->
-    <section id="builders" class="container">
-      <h3 class="section-title">Builders & Integrations</h3>
-      <p class="section-lead">Docs, SDKs and wallet adapters to make Brox integratable.</p>
-      <div class="tools" style="justify-content:center">
-        <div class="tool">Docs (coming)</div>
-        <div class="tool">SDK (coming)</div>
-        <div class="tool">Wallet Adapter (coming)</div>
-      </div>
+    <!-- Community Section -->
+    <section class="community" id="community">
+        <div class="container">
+            <h2 class="section-title">انضم إلى المجتمع</h2>
+            <div class="community-content">
+                <p class="community-description">
+                    كن جزءاً من مجتمع Brox الرائع. تواصل مع آلاف المستثمرين والمطورين من جميع أنحاء العالم. 
+                    احصل على آخر الأخبار والتحديثات وشارك في النقاشات المثيرة حول مستقبل العملات الرقمية.
+                </p>
+                <div class="social-grid">
+                    <a href="https://t.me/brox_official" class="social-card" target="_blank" rel="noopener">
+                        <div class="social-icon">
+                            <i class="fab fa-telegram"></i>
+                        </div>
+                        <div class="social-name">Telegram</div>
+                        <div class="social-handle">@brox_official</div>
+                    </a>
+                    <a href="https://x.com/brox_official" class="social-card" target="_blank" rel="noopener">
+                        <div class="social-icon">
+                            <i class="fab fa-x-twitter"></i>
+                        </div>
+                        <div class="social-name">X (Twitter)</div>
+                        <div class="social-handle">@brox_official</div>
+                    </a>
+                </div>
+            </div>
+        </div>
     </section>
 
-    <!-- FAQ -->
-    <section id="faq" class="container">
-      <h3 class="section-title">FAQ</h3>
-      <div class="faq">
-        <div class="q" onclick="toggleFAQ(this)"><span>What is Brox?</span><span>+</span></div>
-        <div class="a"><p class="muted">A community token with memes, utility, and collectibles.</p></div>
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-logo">Brox Official</div>
+            <p class="footer-text">Born in Fire, Driven by Community</p>
+            <div class="footer-links">
+                <a href="https://t.me/brox_official" class="social-btn" target="_blank" rel="noopener">
+                    <i class="fab fa-telegram"></i>
+                </a>
+                <a href="https://x.com/brox_official" class="social-btn" target="_blank" rel="noopener">
+                    <i class="fab fa-x-twitter"></i>
+                </a>
+            </div>
+            <div class="copyright">
+                © 2024 Brox Official. جميع الحقوق محفوظة. | $BROX
+            </div>
+        </div>
+    </footer>
 
-        <div class="q" onclick="toggleFAQ(this)"><span>How to join?</span><span>+</span></div>
-        <div class="a"><p class="muted">Join our Telegram and follow X for official announcements and airdrops.</p></div>
-
-        <div class="q" onclick="toggleFAQ(this)"><span>How do I verify the contract?</span><span>+</span></div>
-        <div class="a"><p class="muted">Use the explorer link above. Always verify via official channels.</p></div>
-      </div>
-    </section>
-
-    <!-- COMMUNITY / FOOTER -->
-    <section id="community" class="container">
-      <div class="card" style="text-align:center">
-        <h3 style="margin-bottom:6px">Join the Movement</h3>
-        <p class="muted">Be part of Brox Official — join Telegram, follow X, and participate in community governance.</p>
-        <div style="margin-top:12px"><button class="btn" onclick="openTelegram()">Join Telegram</button></div>
-      </div>
-    </section>
-  </main>
-
-  <footer>
-    <div class="container">© <span id="year"></span> Brox Official • <a href="https://t.me/brox_official" target="_blank">Telegram</a> • <a href="https://x.com/brox_official" target="_blank">X</a></div>
-  </footer>
-
-  <!-- SCRIPTS: Three.js scene + lava particles + GSAP + Charts -->
-  <script>
-  /* ---------- Helpers ---------- */
-  function openTelegram(){ window.open('https://t.me/brox_official','_blank') }
-  function openX(){ window.open('https://x.com/brox_official','_blank') }
-  function openDocs(){ alert('Docs coming soon') }
-  function openSDK(){ alert('SDK coming soon') }
-  function copyContract(){ const addr = prompt('Paste the contract address (e.g. 0x...):'); if(addr){ navigator.clipboard?.writeText(addr); document.getElementById('contractShort').textContent = addr.slice(0,8)+'…'+addr.slice(-6); alert('Copied ✔') } }
-
-  // year
-  document.getElementById('year').textContent = new Date().getFullYear();
-
-  /* ---------- THREE.JS: Molten Core (simple) ---------- */
-  (function(){
-    const canvas = document.getElementById('threeCanvas');
-    if(!canvas) return;
-    const renderer = new THREE.WebGLRenderer({canvas, antialias:true, alpha:true});
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-    renderer.setSize(window.innerWidth, window.innerHeight);
-    renderer.toneMapping = THREE.ACESFilmicToneMapping;
-    renderer.outputEncoding = THREE.sRGBEncoding;
-
-    const scene = new THREE.Scene();
-    const camera = new THREE.PerspectiveCamera(45, innerWidth/innerHeight, 0.1, 1000);
-    camera.position.set(0,0,6);
-
-    // soft ambient + point light
-    scene.add(new THREE.AmbientLight(0x442200, 0.8));
-    const pLight = new THREE.PointLight(0xff7a3b, 3, 30);
-    pLight.position.set(5,3,5);
-    scene.add(pLight);
-
-    // molten sphere using shader-like material via noise (approx)
-    const geom = new THREE.IcosahedronGeometry(1.6, 6);
-    // create a lava-like material using vertex colors + emissive map approximation
-    const mat = new THREE.MeshStandardMaterial({
-      color: 0x441100,
-      roughness: 0.35,
-      metalness: 0.05,
-      emissive: 0x2a0a00,
-      emissiveIntensity: 1.2
-    });
-    const sphere = new THREE.Mesh(geom, mat);
-    scene.add(sphere);
-
-    // small inner glow (scaled sphere)
-    const innerGeom = new THREE.IcosahedronGeometry(1.3, 6);
-    const innerMat = new THREE.MeshBasicMaterial({color:0xff4500, transparent:true, opacity:0.12});
-    const inner = new THREE.Mesh(innerGeom, innerMat);
-    scene.add(inner);
-
-    // particle field around core
-    const particlesCount = 800;
-    const particlesGeo = new THREE.BufferGeometry();
-    const posArr = new Float32Array(particlesCount * 3);
-    for(let i=0;i<particlesCount;i++){
-      posArr[i*3] = (Math.random()-0.5) * 8;
-      posArr[i*3+1] = (Math.random()-0.5) * 6;
-      posArr[i*3+2] = (Math.random()-0.5) * 8;
-    }
-    particlesGeo.setAttribute('position', new THREE.BufferAttribute(posArr,3));
-    const pMat = new THREE.PointsMaterial({size:0.06, color:0xff9a4d, transparent:true, opacity:0.85});
-    const particles = new THREE.Points(particlesGeo, pMat);
-    scene.add(particles);
-
-    // composer bloom
-    const composer = new THREE.EffectComposer(renderer);
-    composer.addPass(new THREE.RenderPass(scene, camera));
-    const bloomPass = new THREE.UnrealBloomPass(new THREE.Vector2(innerWidth, innerHeight), 0.8, 0.4, 0.85);
-    bloomPass.threshold = 0.1;
-    bloomPass.strength = 0.9;
-    bloomPass.radius = 0.8;
-    composer.addPass(bloomPass);
-
-    // animate
-    let time = 0;
-    function animate(){
-      time += 0.01;
-      sphere.rotation.y += 0.0025;
-      sphere.rotation.x = Math.sin(time*0.2)*0.02;
-      inner.rotation.y -= 0.003;
-      // particle subtle motion
-      const positions = particles.geometry.attributes.position.array;
-      for(let i=0;i<particlesCount;i++){
-        positions[i*3+1] += Math.sin((i+time*5)/50)*0.0008 - 0.002; // upward drift
-        if(positions[i*3+1] > 8) positions[i*3+1] = -6;
-      }
-      particles.geometry.attributes.position.needsUpdate = true;
-
-      // camera subtle parallax based on mouse
-      composer.render();
-      requestAnimationFrame(animate);
-    }
-    animate();
-
-    // resize
-    window.addEventListener('resize', ()=>{
-      renderer.setSize(window.innerWidth, window.innerHeight);
-      camera.aspect = innerWidth/innerHeight;
-      camera.updateProjectionMatrix();
-      composer.setSize(innerWidth, innerHeight);
-    });
-
-    // pointer parallax
-    let mouseX=0, mouseY=0;
-    window.addEventListener('mousemove', (e)=> {
-      mouseX = (e.clientX / innerWidth) * 2 - 1;
-      mouseY = (e.clientY / innerHeight) * 2 - 1;
-      camera.position.x += (mouseX*1.2 - camera.position.x) * 0.06;
-      camera.position.y += (-mouseY*0.8 - camera.position.y) * 0.06;
-      camera.lookAt(0,0,0);
-    });
-  })();
-
-  /* ---------- Canvas lava embers (foreground) ---------- */
-  (function(){
-    const c = document.getElementById('lavaCanvas');
-    if(!c) return;
-    const ctx = c.getContext('2d');
-    function resize(){ c.width = innerWidth; c.height = innerHeight; }
-    window.addEventListener('resize', resize); resize();
-
-    const embers = [];
-    function spawn(n){
-      for(let i=0;i<n;i++){
-        embers.push({
-          x: Math.random()*c.width,
-          y: c.height + Math.random()*200,
-          vx: (Math.random()-0.5)*1.6,
-          vy: -(1 + Math.random()*2.6),
-          r: 0.8 + Math.random()*3.2,
-          hue: 16 + Math.random()*30,
-          life: 60 + Math.random()*140
+    <script>
+        // Loading Screen
+        window.addEventListener('load', function() {
+            setTimeout(function() {
+                document.getElementById('loading').classList.add('hidden');
+            }, 1500);
         });
-      }
-    }
-    spawn(Math.floor(c.width * 0.03));
 
-    function loop(){
-      ctx.clearRect(0,0,c.width,c.height);
-      // subtle overlay gradient
-      const g = ctx.createLinearGradient(0,0,0,c.height);
-      g.addColorStop(0, 'rgba(0,0,0,0)');
-      g.addColorStop(1, 'rgba(0,0,0,0.3)');
-      ctx.fillStyle = g;
-      ctx.fillRect(0,0,c.width,c.height);
+        // Animated Background
+        function createFlames() {
+            const bg = document.getElementById('animatedBg');
+            const flameCount = 50;
 
-      for(let i=embers.length-1;i>=0;i--){
-        const e = embers[i];
-        e.x += e.vx; e.y += e.vy; e.life--;
-        const alpha = Math.max(0, Math.min(1, e.life/160));
-        ctx.beginPath();
-        ctx.fillStyle = `hsla(${e.hue},90%,50%,${0.12*alpha})`;
-        ctx.shadowBlur = 12 * alpha;
-        ctx.shadowColor = `rgba(255,120,30,${0.18*alpha})`;
-        ctx.arc(e.x, e.y, e.r*(1+ (1-alpha)*0.5), 0, Math.PI*2);
-        ctx.fill();
-        if(e.life<=0 || e.y < -40 || e.x < -80 || e.x > c.width+80){
-          embers.splice(i,1);
-          if(Math.random() < 0.9) spawn(1);
+            for (let i = 0; i < flameCount; i++) {
+                const flame = document.createElement('div');
+                flame.className = 'flame';
+                flame.style.left = Math.random() * 100 + '%';
+                flame.style.animationDelay = Math.random() * 6 + 's';
+                flame.style.animationDuration = (Math.random() * 3 + 3) + 's';
+                bg.appendChild(flame);
+            }
         }
-      }
-      requestAnimationFrame(loop);
-    }
-    loop();
-  })();
 
-  /* ---------- GSAP scroll reveals for sections ---------- */
-  (function(){
-    gsap.registerPlugin(ScrollTrigger);
-    gsap.utils.toArray('section').forEach((sec, i)=>{
-      gsap.from(sec, {
-        y: 40, opacity: 0, duration: 1.0, ease: "power3.out",
-        scrollTrigger: { trigger: sec, start: "top 85%" }
-      });
-    });
-    gsap.from('.hero-content h1', { y: 30, opacity:0, duration:1.2, delay:0.2, ease:"power4.out" });
-    gsap.from('.hero-content .lead', { y: 20, opacity:0, duration:1.2, delay:0.35, ease:"power4.out" });
-    gsap.from('.cta-row .btn', { y: 10, opacity:0, stagger:0.08, duration:0.8, delay:0.5 });
-  })();
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
 
-  /* ---------- Animated counters (start when visible) ---------- */
-  (function(){
-    function animateValue(el, end, duration){
-      let start = 0; const step = (timestamp, startTime) => {
-        if(!startTime) startTime = timestamp;
-      };
-      let startTime = null;
-      function frame(ts){
-        if(!startTime) startTime = ts;
-        const progress = Math.min((ts - startTime) / duration, 1);
-        const value = Math.floor(progress * end);
-        el.textContent = (el.id === 'mcap' || el.id === 'vol') ? ('$' + value.toLocaleString()) : value.toLocaleString();
-        if(progress < 1) requestAnimationFrame(frame);
-      }
-      requestAnimationFrame(frame);
-    }
+        // Header background on scroll
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('.header');
+            if (window.scrollY > 100) {
+                header.style.background = 'rgba(10, 10, 10, 0.98)';
+            } else {
+                header.style.background = 'rgba(10, 10, 10, 0.95)';
+            }
+        });
 
-    const options = { root: null, threshold: 0.2 };
-    const observer = new IntersectionObserver((entries)=>{
-      entries.forEach(e=>{
-        if(e.isIntersecting){
-          const holder = document.getElementById('holders');
-          const cap = document.getElementById('mcap');
-          const vol = document.getElementById('vol');
-          // values from you: Holders 133+, Market Cap 20.5k, Volume 5.6k
-          animateValue(holder, 133, 1200);
-          animateValue(cap, 20500, 1400);
-          animateValue(vol, 5600, 1400);
-          observer.disconnect();
+        // Counter animation for stats
+        function animateCounters() {
+            const counters = document.querySelectorAll('.stat-number');
+            
+            counters.forEach(counter => {
+                const target = counter.innerText;
+                const numericValue = parseInt(target.replace(/[^0-9]/g, ''));
+                const suffix = target.replace(/[0-9]/g, '');
+                
+                let current = 0;
+                const increment = numericValue / 100;
+                
+                const updateCounter = () => {
+                    if (current < numericValue) {
+                        current += increment;
+                        counter.innerText = Math.floor(current) + suffix;
+                        requestAnimationFrame(updateCounter);
+                    } else {
+                        counter.innerText = target;
+                    }
+                };
+                
+                // Start animation when element is in view
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            updateCounter();
+                            observer.unobserve(entry.target);
+                        }
+                    });
+                });
+                
+                observer.observe(counter);
+            });
         }
-      });
-    }, options);
-    observer.observe(document.getElementById('tokenomics'));
-  })();
 
-  /* ---------- Chart.js Tokenomics (donut) ---------- */
-  (function(){
-    const ctx = document.getElementById('pieChart').getContext('2d');
-    new Chart(ctx, {
-      type: 'doughnut',
-      data: {
-        labels: ['Team 2%','Liquidity 40%','Marketing 25%','Airdrop 20%','Reserve 13%'],
-        datasets: [{
-          data: [2,40,25,20,13],
-          backgroundColor: ['#ff7a3b','#ff3a00','#ffa363','#ffc89a','#ffdcb0'],
-          borderWidth: 0
-        }]
-      },
-      options:{
-        responsive:true, maintainAspectRatio:false,
-        cutout: '60%',
-        plugins:{ legend: { display:false } }
-      }
-    });
-  })();
+        // Initialize animations
+        document.addEventListener('DOMContentLoaded', function() {
+            createFlames();
+            animateCounters();
+        });
 
-  /* ---------- Roadmap reveal stagger ---------- */
-  (function(){
-    gsap.utils.toArray('.timeline .item').forEach((el, i)=>{
-      gsap.from(el, { y: 30, opacity:0, duration:0.9, delay: i*0.12, scrollTrigger:{ trigger: el, start: 'top 85%'}});
-    });
-  })();
+        // Add hover effects to cards
+        document.querySelectorAll('.stat-card, .feature-card, .social-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-10px) scale(1.02)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0) scale(1)';
+            });
+        });
 
-  /* ---------- FAQ toggle ---------- */
-  function toggleFAQ(el){
-    const next = el.nextElementSibling;
-    const open = next.style.display === 'block';
-    // close others
-    document.querySelectorAll('.faq .a').forEach(a=> a.style.display = 'none');
-    document.querySelectorAll('.faq .q').forEach(q=> q.querySelector('span:last-child').textContent = '+');
-    if(!open){ next.style.display = 'block'; el.querySelector('span:last-child').textContent = '−'; }
-  }
+        // Typing effect for hero tagline
+        function typeWriter() {
+            const tagline = document.querySelector('.hero .tagline');
+            const text = 'Born in Fire, Driven by Community';
+            tagline.innerHTML = '';
+            
+            let i = 0;
+            function type() {
+                if (i < text.length) {
+                    tagline.innerHTML += text.charAt(i);
+                    i++;
+                    setTimeout(type, 100);
+                } else {
+                    tagline.style.borderRight = 'none';
+                }
+            }
+            
+            setTimeout(() => {
+                tagline.style.borderRight = '2px solid #ff6b35';
+                type();
+            }, 2000);
+        }
 
-  </script>
+        // Initialize typing effect
+        window.addEventListener('load', typeWriter);
+
+        // Add parallax effect to hero section
+        window.addEventListener('scroll', function() {
+            const scrolled = window.pageYOffset;
+            const parallax = document.querySelector('.hero');
+            const speed = scrolled * 0.5;
+            
+            parallax.style.transform = `translateY(${speed}px)`;
+        });
+
+        // Add click effect to buttons
+        document.querySelectorAll('.btn').forEach(button => {
+            button.addEventListener('click', function(e) {
+                const ripple = document.createElement('span');
+                const rect = this.getBoundingClientRect();
+                const size = Math.max(rect.width, rect.height);
+                const x = e.clientX - rect.left - size / 2;
+                const y = e.clientY - rect.top - size / 2;
+                
+                ripple.style.cssText = `
+                    position: absolute;
+                    width: ${size}px;
+                    height: ${size}px;
+                    left: ${x}px;
+                    top: ${y}px;
+                    background: rgba(255, 255, 255, 0.3);
+                    border-radius: 50%;
+                    transform: scale(0);
+                    animation: ripple 0.6s ease-out;
+                    pointer-events: none;
+                `;
+                
+                this.style.position = 'relative';
+                this.style.overflow = 'hidden';
+                this.appendChild(ripple);
+                
+                setTimeout(() => {
+                    ripple.remove();
+                }, 600);
+            });
+        });
+
+        // Add ripple animation
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes ripple {
+                to {
+                    transform: scale(2);
+                    opacity: 0;
+                }
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
 </body>
 </html>
